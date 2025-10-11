@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "jup_tracking.html",
+    "href": "jup_tracking.html",
+    "title": "Small tracking notebook",
+    "section": "",
+    "text": "In this jupyter notebook we will see how to use OpenCV to track an object in a video. We’ll first select the object (Region Of Interest) then track it through the frame and finally we’ ll plot the evolution of the barycenter of the object with regard to the frame number.",
+    "crumbs": [
+      "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
+      "Tracking notebook"
+    ]
+  },
+  {
+    "objectID": "jup_tracking.html#import-the-used-libraries",
+    "href": "jup_tracking.html#import-the-used-libraries",
+    "title": "Small tracking notebook",
+    "section": "Import the used libraries",
+    "text": "Import the used libraries\nWe’ll need\n\nOpenCV (cv2)\ntracking_tools to read the ROI\nmatplotlib to do our plots\nIPython.display for the inline display of the tracked video in the notebook\n\n\n\nCode\nimport cv2\nfrom IPython.display import display, clear_output\nimport numpy as np\nimport tracking_tools as tt\nimport matplotlib.pyplot as plt",
+    "crumbs": [
+      "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
+      "Tracking notebook"
+    ]
+  },
+  {
+    "objectID": "jup_tracking.html#choose-the-video-file-and-select-the-roi",
+    "href": "jup_tracking.html#choose-the-video-file-and-select-the-roi",
+    "title": "Small tracking notebook",
+    "section": "Choose the video file and select the ROI",
+    "text": "Choose the video file and select the ROI\n\n\nCode\nvideo_path  = \"Resources/Pendulum/pend.mov\"  \nbbox        = tt.select_ROI(video_path)\n\n\nSelect a ROI and then press SPACE or ENTER button!\nCancel the selection process by pressing c button!",
+    "crumbs": [
+      "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
+      "Tracking notebook"
+    ]
+  },
+  {
+    "objectID": "jup_tracking.html#initialise-the-tracker",
+    "href": "jup_tracking.html#initialise-the-tracker",
+    "title": "Small tracking notebook",
+    "section": "Initialise the tracker",
+    "text": "Initialise the tracker\nThe tracker is the CSRT tracker from OpenCV based on (Lukezic et al. 2017) that we initialised based of the bounding box surrounding delimiting the ROI.\n\n\nCode\ncap         = cv2.VideoCapture(video_path)\nflag, frame = cap.read()\n\nif hasattr(cv2, 'legacy'):\n    tracker = cv2.legacy.TrackerCSRT_create()\nelse:\n    tracker = cv2.TrackerCSRT_create()\n\ntracker.init(frame, bbox)\npositions   = []\nframe_num   = 0",
+    "crumbs": [
+      "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
+      "Tracking notebook"
+    ]
+  },
+  {
+    "objectID": "jup_tracking.html#actual-tracking",
+    "href": "jup_tracking.html#actual-tracking",
+    "title": "Small tracking notebook",
+    "section": "Actual tracking",
+    "text": "Actual tracking\nWe now loop over the frame to perform the actual tracking and store the positino of the barycenter of the ROI for each frame.\n\n\nCode\nwhile True:\n    frame_num +=1\n    flag_read, frame = cap.read()\n    if not flag_read:\n        break\n    flag_track, bbox = tracker.update(frame)\n    if flag_track:\n        x, y, w, h  = [int(v) for v in bbox]\n        center_x    = x + w // 2\n        center_y    = y + h // 2\n        positions.append([frame_num, center_x, center_y])\n\n        cv2.rectangle(frame, (x, y), (x + w, y + h), (245, 70, 58), 2)\n        cv2.circle(frame, (center_x, center_y), int(0.1*min(h,w)), (245, 70, 58), -1)\n        cv2.putText(frame, f\"({center_x},{center_y})\", (20, 40),\n                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (245, 70, 58), 2)\n    else:\n        cv2.putText(frame, \"Lost\", (20, 40),\n                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (247, 59, 218), 2)\n\n    rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  \n\n    clear_output(wait=True)\n    plt.imshow(rgb)\n    plt.axis('off')\n    plt.show()\n\ncap.release()",
+    "crumbs": [
+      "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
+      "Tracking notebook"
+    ]
+  },
+  {
+    "objectID": "jup_tracking.html#post-processing",
+    "href": "jup_tracking.html#post-processing",
+    "title": "Small tracking notebook",
+    "section": "Post-processing",
+    "text": "Post-processing\n\n\nCode\nimport numpy as np\nimport plotly.graph_objects as go\nimport plotly.io as pio\npio.renderers.default = \"notebook_connected\"\npositions = np.array(positions) \n\nfig = go.Figure()\n\nfig.add_trace(go.Scatter(\n    x=positions[:,0],  \n    y=positions[:,1],  \n    mode='lines',\n    name='X',\n    line=dict(color='rgb(58,70,245)')\n))\n\nfig.add_trace(go.Scatter(\n    x=positions[:,0],  \n    y=positions[:,2],  \n    mode='lines',\n    name='Y',\n    line=dict(color='rgb(23,15,48)')\n))\n\nfig.update_layout(\n    title=\"Position over time\",\n    plot_bgcolor='rgba(0,0,0,0)',  # Remove background color\n    xaxis_title=\"Frame number\",\n    yaxis_title=\"Position (pixels)\",\n    legend=dict(x=0, y=1),\n    width=900,   \n    height=500,  \n)\n\nfig.show()",
+    "crumbs": [
+      "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
+      "Tracking notebook"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Tracking objects with OpenCV",
+    "section": "",
+    "text": "Welcome!\n\nThese demos we will see how to use OpenCV to track an object in a video. We’ll first select the object (Region Of Interest) then track it through the frame and finally we’ ll plot the evolution of the barycenter of the object with regard to the frame number.\nThe notebooks can be executed online with binder  (no download required).\n\nTo run the notebook locally you’ll need to setup an environment with opencv, matplotlib and numpy. Follow these steps to create a Conda environment named tracking-ev with Python 3.13 and all required packages:\n# Create a new conda environment with Python 3.13\nconda create -n tracking-ev python=3.13 -y\n\n# Activate the environment\nconda activate tracking-ev\n\n# Install required packages: OpenCV (with contrib modules), NumPy, and Matplotlib\nconda install -c conda-forge opencv=4.8.0 matplotlib numpy -y",
+    "crumbs": [
+      "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
+      "Home"
+    ]
+  }
+]
