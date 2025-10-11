@@ -1,0 +1,46 @@
+execute:
+  freeze: true
+project:
+  resources:
+    - "Resources"
+    - "style_site.scss"
+  type: website
+  output-dir: public
+website:
+  title: "Tracking objects"
+  # pdf-engine: lualatex
+  description: "Tracking objects with OpenCV"
+  navbar:
+    right:
+      - text: "{{< iconify fa6-solid:rocket width=17 title=Binder >}}"
+        href: https://mybinder.org/v2/gh/AlexandreDabySeesaram/Tracking_video/main?urlpath=lab/tree/./demos/
+      - icon: github
+        href: https://github.com/AlexandreDabySeesaram/Tracking_video
+      - text: "{{< iconify fa6-solid:download width=17 title=download >}}"
+        href: https://github.com/AlexandreDabySeesaram/Simplified_NeuROM_demos/archive/refs/heads/master.zip
+      - href: https://alexandredabyseesaram.github.io/
+        text: Alexandre Daby-Seesaram's homepage
+
+  sidebar:
+    style: "floating"
+    search: true
+    contents:
+      - text: "Home"
+        href: index.qmd
+      - href: jup_tracking.ipynb
+        text: Tracking notebook
+
+
+format:
+  # pdf: default
+  html:
+    code-fold: show
+    theme:
+      light: [flatly,Resources/style_site.scss]
+      dark: [darkly,Resources/style_site_dark.scss]      
+    css: styles.css
+    toc: true
+    html-math-method: mathjax
+
+
+
