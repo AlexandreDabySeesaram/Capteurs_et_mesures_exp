@@ -8,7 +8,7 @@ format:
 
 # Welcome!
 
-* These demos we will see how to use OpenCV to track an object in a video. We'll first select the object (Region Of Interest) then track it through the frame and finally we' ll plot the evolution of the barycenter of the object with regard to the frame number.
+* In this demo we will see how to use OpenCV to track an object in a video. We'll first select the object (Region Of Interest) then track it through the frame and finally we' ll plot the evolution of the barycenter of the object with regard to the frame number.
 
 * The notebooks can be executed online with binder [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AlexandreDabySeesaram/Tracking_video/main?urlpath=lab/tree/./demos/) (no download required).
 
