@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-CZceb_kH.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-Bam3NpBI.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-C_DwAp7Z.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-CEsLFVD9.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-D5MAsWEG.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-C6PDArdf.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        const scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          // Guard against race condition where iframe isn't ready
+          if (!obj.contentWindow?.document?.documentElement) {
+            return;
+          }
+          const element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          const hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          const newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((_entries) => {
+          setHeight();
+        });
+        // Only observe if iframe content is ready
+        if (obj.contentWindow?.document?.body) {
+          resizeObserver.observe(obj.contentWindow.document.body);
+        }
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>numpy tracking</title>
+    <script type="module" crossorigin src="./assets/index-DgkDB3V6.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-BOTGA194.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-LvLJmgfZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-Bj1aDYRI.js">
+    <link rel="modulepreload" crossorigin href="./assets/compiler-runtime-B3qBwwSJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEventListener-JHUvHLW9.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-B9UM4_6J.js">
+    <link rel="modulepreload" crossorigin href="./assets/precisionRound-DE6m4R32.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-BiVEjgZ4.js">
+    <link rel="modulepreload" crossorigin href="./assets/vega-loader.browser-BT4x4sta.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-BhbMk_bI.js">
+    <link rel="modulepreload" crossorigin href="./assets/clsx-Dz_KRrWq.js">
+    <link rel="modulepreload" crossorigin href="./assets/cn-DCUzRj2J.js">
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-cbTw3Dw7.js">
+    <link rel="modulepreload" crossorigin href="./assets/badge-UzeYbQPQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/button-X_aYMcE3.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-dom-CSu739Rf.js">
+    <link rel="modulepreload" crossorigin href="./assets/Combination-BPAy8uP5.js">
+    <link rel="modulepreload" crossorigin href="./assets/menu-items-C3r5-sGJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CWIn7DNb.js">
+    <link rel="modulepreload" crossorigin href="./assets/createLucideIcon-BbhvgPRh.js">
+    <link rel="modulepreload" crossorigin href="./assets/check-BX3rTFK1.js">
+    <link rel="modulepreload" crossorigin href="./assets/x-CVK_q-zj.js">
+    <link rel="modulepreload" crossorigin href="./assets/select-qSsIcOgJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-BjX8HFPm.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-toast-C4Rr8s81.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEvent-D91BmmQi.js">
+    <link rel="modulepreload" crossorigin href="./assets/invariant-B-l9jeBW.js">
+    <link rel="modulepreload" crossorigin href="./assets/isObject-DvLSfCY5.js">
+    <link rel="modulepreload" crossorigin href="./assets/isArrayLikeObject-ODovYgPQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/merge-KEVTaUSH.js">
+    <link rel="modulepreload" crossorigin href="./assets/zod-H_cgTO0M.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-BNdvLYaG.js">
+    <link rel="modulepreload" crossorigin href="./assets/Deferred-BYoNwz_x.js">
+    <link rel="modulepreload" crossorigin href="./assets/uuid-oCq7lYru.js">
+    <link rel="modulepreload" crossorigin href="./assets/DeferredRequestRegistry-DRtq5P9f.js">
+    <link rel="modulepreload" crossorigin href="./assets/constants-CNVyfOzm.js">
+    <link rel="modulepreload" crossorigin href="./assets/session-C22Hiywl.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-CdI1sY6r.js">
+    <link rel="modulepreload" crossorigin href="./assets/requests-BmJhiUGv.js">
+    <link rel="modulepreload" crossorigin href="./assets/useLifecycle-Dhu3vUuX.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNonce-Cz5z0CTp.js">
+    <link rel="modulepreload" crossorigin href="./assets/useTheme-BZ-ejQ3b.js">
+    <link rel="modulepreload" crossorigin href="./assets/arrays-DTX1hZCG.js">
+    <link rel="modulepreload" crossorigin href="./assets/strings-BhTkn9U2.js">
+    <link rel="modulepreload" crossorigin href="./assets/once-D5MbwR5j.js">
+    <link rel="modulepreload" crossorigin href="./assets/capabilities-9rPLQ8Ql.js">
+    <link rel="modulepreload" crossorigin href="./assets/createReducer-BYdaa-Mh.js">
+    <link rel="modulepreload" crossorigin href="./assets/paths-DI3oZ0CS.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DIy_N_yY.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-C9nDytuy.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CjNqII3E.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DKrZn9ai.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CIftQN-I.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-bj1mt1tW.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CJ2D26ow.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Cj_hQPOR.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BfRVXwpF.js">
+    <link rel="modulepreload" crossorigin href="./assets/stex-DhrhgQkE.js">
+    <link rel="modulepreload" crossorigin href="./assets/toDate-BzaZOs5g.js">
+    <link rel="modulepreload" crossorigin href="./assets/purify.es-BTsGkydu.js">
+    <link rel="modulepreload" crossorigin href="./assets/cjs-Boy23usL.js">
+    <link rel="modulepreload" crossorigin href="./assets/isSymbol-BT6B8Bon.js">
+    <link rel="modulepreload" crossorigin href="./assets/toNumber-BvwE1TMv.js">
+    <link rel="modulepreload" crossorigin href="./assets/now-D9EZE70o.js">
+    <link rel="modulepreload" crossorigin href="./assets/debounce-CoGvMBxs.js">
+    <link rel="modulepreload" crossorigin href="./assets/database-zap-Bo3eWysp.js">
+    <link rel="modulepreload" crossorigin href="./assets/main-DMGaTd9L.js">
+    <link rel="modulepreload" crossorigin href="./assets/cells-rqCJr5Ib.js">
+    <link rel="modulepreload" crossorigin href="./assets/ErrorBoundary-zbTlP3Ln.js">
+    <link rel="modulepreload" crossorigin href="./assets/kbd-BCvAMf7r.js">
+    <link rel="modulepreload" crossorigin href="./assets/useInstallPackage-CbfykXzG.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-dialog-BpHPkrDN.js">
+    <link rel="modulepreload" crossorigin href="./assets/dialog-xcsfhMSJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDebounce-BX__oPH9.js">
+    <link rel="modulepreload" crossorigin href="./assets/numbers-PVAIxxm3.js">
+    <link rel="modulepreload" crossorigin href="./assets/SSRProvider-B1w1DixR.js">
+    <link rel="modulepreload" crossorigin href="./assets/context-BTW87m_q.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNumberFormatter-BbVPmfi-.js">
+    <link rel="modulepreload" crossorigin href="./assets/usePress-Cclai8Te.js">
+    <link rel="modulepreload" crossorigin href="./assets/input-DtaVTHTT.js">
+    <link rel="modulepreload" crossorigin href="./assets/ImperativeModal-Dy4BGls6.js">
+    <link rel="modulepreload" crossorigin href="./assets/cell-link-Rcz-LPKa.js">
+    <link rel="modulepreload" crossorigin href="./assets/multi-map-WNcxeeIo.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-CO43lrmn.js">
+    <link rel="modulepreload" crossorigin href="./assets/chevron-right-CgWZ5EuC.js">
+    <link rel="modulepreload" crossorigin href="./assets/dropdown-menu-BrDKTB7e.js">
+    <link rel="modulepreload" crossorigin href="./assets/links-CBzEeixa.js">
+    <link rel="modulepreload" crossorigin href="./assets/datasource-CNQ-RUAj.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-XUzipEOc.js">
+    <link rel="modulepreload" crossorigin href="./assets/sparkles-BFAuUmQz.js">
+    <link rel="modulepreload" crossorigin href="./assets/MarimoErrorOutput-C3dgyHB-.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-20suwgAm.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-D9pqKUvN.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-icon-CgnxGrMW.js">
+    <link rel="modulepreload" crossorigin href="./assets/spinner-C1rFlsY1.js">
+    <link rel="modulepreload" crossorigin href="./assets/html-to-image-G3c0U-iP.js">
+    <link rel="modulepreload" crossorigin href="./assets/focus-Dujsd1jO.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAsyncData-KVNnqnT9.js">
+    <link rel="modulepreload" crossorigin href="./assets/LazyAnyLanguageCodeMirror-JSMdoajI.js">
+    <link rel="modulepreload" crossorigin href="./assets/micromark-factory-space-8Uk-uN5W.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-5FQGJX7Z-BMCEQJ02.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-renderer-B3K5q-ZY.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DHhE1ppN.js">
+    <link rel="modulepreload" crossorigin href="./assets/command-D6DswM0r.js">
+    <link rel="modulepreload" crossorigin href="./assets/popover-Cv6ejAIc.js">
+    <link rel="modulepreload" crossorigin href="./assets/errors-DOdB-ouX.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-Xq3GOYNm.js">
+    <link rel="modulepreload" crossorigin href="./assets/useRunCells-CM1qW8Of.js">
+    <link rel="modulepreload" crossorigin href="./assets/RenderHTML-BOchBzK-.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-C8UPy_05.js">
+    <link rel="modulepreload" crossorigin href="./assets/useIframeCapabilities-YTPInk6U.js">
+    <link rel="modulepreload" crossorigin href="./assets/error-banner-BiJwbvyR.js">
+    <link rel="modulepreload" crossorigin href="./assets/formats-OGAsvfBK.js">
+    <link rel="modulepreload" crossorigin href="./assets/en-US-DiJ3QFS_.js">
+    <link rel="modulepreload" crossorigin href="./assets/isValid-DSnTKHQH.js">
+    <link rel="modulepreload" crossorigin href="./assets/dates-BJSc8AMo.js">
+    <link rel="modulepreload" crossorigin href="./assets/maps-CCoyzwfU.js">
+    <link rel="modulepreload" crossorigin href="./assets/extends-Cj59wdOU.js">
+    <link rel="modulepreload" crossorigin href="./assets/emotion-is-prop-valid.esm-CyDtkjhK.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDateFormatter-Dk7PA_t2.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-icons.esm-DxslCP1T.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-C-5GLtb7.js">
+    <link rel="modulepreload" crossorigin href="./assets/message-circle-BvHsZAbQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-resizable-panels.browser.esm-xQHRvEag.js">
+    <link rel="modulepreload" crossorigin href="./assets/JsonOutput-B3ENPE9s.js">
+    <link rel="modulepreload" crossorigin href="./assets/chart-no-axes-column-Cyaq55br.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-function-DitZjRTT.js">
+    <link rel="modulepreload" crossorigin href="./assets/spec-BzGOTwD5.js">
+    <link rel="modulepreload" crossorigin href="./assets/ellipsis-vertical-Cq6WSGqD.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-cw-DeZgarGm.js">
+    <link rel="modulepreload" crossorigin href="./assets/components-BEowaI9j.js">
+    <link rel="modulepreload" crossorigin href="./assets/column-preview-D3iW4pG3.js">
+    <link rel="modulepreload" crossorigin href="./assets/icons-DelodwsZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/floating-outline-CUurMy_Y.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAddCell-CUrHq1Z4.js">
+    <link rel="modulepreload" crossorigin href="./assets/objectWithoutPropertiesLoose-CYAI8Ruy.js">
+    <link rel="modulepreload" crossorigin href="./assets/esm-CmxdJbk6.js">
+    <link rel="modulepreload" crossorigin href="./assets/eye-off-DJFpofTS.js">
+    <link rel="modulepreload" crossorigin href="./assets/plus-DcaJfJ2z.js">
+    <link rel="modulepreload" crossorigin href="./assets/readonly-python-code-CsZeevPe.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-headphone-Bs2HNmhu.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-CLBJ74pj.js">
+    <link rel="modulepreload" crossorigin href="./assets/image-CafsWQx5.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-icons-CGVD9eMg.js">
+    <link rel="modulepreload" crossorigin href="./assets/switch-BaYCltRz.js">
+    <link rel="modulepreload" crossorigin href="./assets/events-Dln0wBiA.js">
+    <link rel="modulepreload" crossorigin href="./assets/globals-BOMeSJG5.js">
+    <link rel="modulepreload" crossorigin href="./assets/share-1Sb4LifJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/blob-DWwaSoxb.js">
+    <link rel="modulepreload" crossorigin href="./assets/memoize-BAAodEJh.js">
+    <link rel="modulepreload" crossorigin href="./assets/get-B_kAyaPl.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseSet-Sc7P9iOK.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-oB9pwiwS.js">
+    <link rel="modulepreload" crossorigin href="./assets/label-Cvbi55_x.js">
+    <link rel="modulepreload" crossorigin href="./assets/textarea-ChkICSMn.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-ccw-DwP7TAI9.js">
+    <link rel="modulepreload" crossorigin href="./assets/trash-2-CPFJhzBF.js">
+    <link rel="modulepreload" crossorigin href="./assets/form-rW9z_hZz.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderShortcut-CwG4LAo7.js">
+    <link rel="modulepreload" crossorigin href="./assets/field-SBC8FrmM.js">
+    <link rel="modulepreload" crossorigin href="./assets/VisuallyHidden-CU7G7cz_.js">
+    <link rel="modulepreload" crossorigin href="./assets/useBoolean-BjAVIr1t.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeepCompareMemoize-606Ao2HX.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-DNsZzheK.js">
+    <link rel="modulepreload" crossorigin href="./assets/fileToBase64-D56_SaTi.js">
+    <link rel="modulepreload" crossorigin href="./assets/prop-types-BrVK5P5H.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-wtizskHz.js">
+    <link rel="modulepreload" crossorigin href="./assets/code-xml-Xy4mg5w4.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-CXthr_IK.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-uKnAnUv7.js">
+    <link rel="modulepreload" crossorigin href="./assets/triangle-alert-CkHEQfl8.js">
+    <link rel="modulepreload" crossorigin href="./assets/bundle.esm-LMxLLjaH.js">
+    <link rel="stylesheet" crossorigin href="./assets/cells-jmgGt1lS.css">
+    <link rel="stylesheet" crossorigin href="./assets/markdown-renderer-DdDKmWlR.css">
+    <link rel="stylesheet" crossorigin href="./assets/JsonOutput-B7vuddcd.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-BuSRVSH0.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    <marimo-code hidden="">import%20marimo%0A%0A__generated_with%20%3D%20%220.22.0%22%0Aapp%20%3D%20marimo.App(width%3D%22columns%22)%0A%0A%0A%40app.cell(column%3D0)%0Adef%20_()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%20%20%20%20import%20numpy%20as%20np%0A%20%20%20%20import%20PIL.Image%0A%20%20%20%20import%20io%0A%20%20%20%20import%20time%0A%20%20%20%20import%20plotly.graph_objects%20as%20go%0A%0A%20%20%20%20return%20PIL%2C%20go%2C%20io%2C%20mo%2C%20np%2C%20time%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%201D%20Object%20Tracking%20with%20NumPy%0A%0A%20%20%20%20In%20this%20notebook%2C%20we%20demonstrate%20how%20to%20perform%20simple%20object%20tracking%20using%20**pure%20NumPy**%20operations.%0A%20%20%20%20We%20will%3A%0A%20%20%20%201.%20Generate%20a%20synthetic%20%22video%22%20of%20a%20black%20dot%20moving%20sinusoidally%20along%20the%20X-axis%20on%20a%20white%20background.%0A%20%20%20%202.%20Track%20the%20dot%20frame-by-frame%20by%20finding%20the%20barycenter%20(center%20of%20mass)%20of%20the%20black%20pixels.%0A%20%20%20%203.%20Plot%20the%20trajectory%20of%20the%20tracked%20object%20over%20time%20using%20Plotly.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(mo)%3A%0A%20%20%20%20%23%20Controls%20to%20customize%20the%20simulation%0A%20%20%20%20num_frames%20%3D%20mo.ui.slider(10%2C%20200%2C%20value%3D100%2C%20label%3D%22Number%20of%20Frames%22)%0A%20%20%20%20width%20%3D%20mo.ui.slider(200%2C%20800%2C%20value%3D600%2C%20label%3D%22Video%20Width%20(pixels)%22)%0A%20%20%20%20height%20%3D%20mo.ui.slider(100%2C%20400%2C%20value%3D200%2C%20label%3D%22Video%20Height%20(pixels)%22)%0A%20%20%20%20radius%20%3D%20mo.ui.slider(2%2C%2020%2C%20value%3D8%2C%20label%3D%22Dot%20Radius%20(pixels)%22)%0A%20%20%20%20frequency%20%3D%20mo.ui.slider(0.01%2C%201.0%2C%20step%3D0.01%2C%20value%3D0.02%2C%20label%3D%22Frequency%20(cycles%2Fframe)%22)%0A%0A%20%20%20%20controls%20%3D%20mo.hstack(%5Bnum_frames%2C%20width%2C%20height%2C%20radius%2C%20frequency%5D%2C%20justify%3D%22space-between%22)%0A%20%20%20%20return%20controls%2C%20frequency%2C%20height%2C%20num_frames%2C%20radius%2C%20width%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(controls%2C%20mo)%3A%0A%20%20%20%20mo.md(f%22%22%22%0A%20%20%20%20%23%23%23%20Simulation%20Parameters%0A%20%20%20%20Modify%20the%20parameters%20below%20to%20dynamically%20regenerate%20the%20synthetic%20video%3A%0A%0A%20%20%20%20%7Bcontrols%7D%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(frequency%2C%20height%2C%20np%2C%20num_frames%2C%20radius%2C%20width)%3A%0A%20%20%20%20n_frames%20%3D%20num_frames.value%0A%20%20%20%20_w%20%3D%20width.value%0A%20%20%20%20_h%20%3D%20height.value%0A%20%20%20%20_r%20%3D%20radius.value%0A%0A%20%20%20%20%23%20Generate%20white%20background%20frames%20(value%20255)%0A%20%20%20%20frames%20%3D%20np.ones((n_frames%2C%20_h%2C%20_w)%2C%20dtype%3Dnp.uint8)%20*%20255%0A%20%20%20%20true_x_positions%20%3D%20%5B%5D%0A%0A%20%20%20%20for%20_t%20in%20range(n_frames)%3A%0A%20%20%20%20%20%20%20%20%23%20Sinusoidal%20motion%20along%20X-axis%0A%20%20%20%20%20%20%20%20x_center%20%3D%20int(_w%20%2F%202%20%2B%20(_w%20%2F%202%20-%20_r%20-%2020)%20*%20np.sin(2%20*%20np.pi%20*%20frequency.value%20*%20_t))%0A%20%20%20%20%20%20%20%20y_center%20%3D%20int(_h%20%2F%202)%0A%20%20%20%20%20%20%20%20true_x_positions.append(x_center)%0A%0A%20%20%20%20%20%20%20%20%23%20Create%20a%20circle%20mask%20using%20np.ogrid%0A%20%20%20%20%20%20%20%20_Y%2C%20_X%20%3D%20np.ogrid%5B%3A_h%2C%20%3A_w%5D%0A%20%20%20%20%20%20%20%20dist_from_center%20%3D%20(_X%20-%20x_center)**2%20%2B%20(_Y%20-%20y_center)**2%0A%20%20%20%20%20%20%20%20_mask%20%3D%20dist_from_center%20%3C%3D%20_r**2%0A%20%20%20%20%20%20%20%20frames%5B_t%5D%5B_mask%5D%20%3D%200%20%20%23%20Draw%20black%20dot%20(value%200)%0A%20%20%20%20return%20(frames%2C)%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20NumPy%20Object%20Tracking%20Loop%0A%0A%20%20%20%20For%20each%20frame%2C%20we%20locate%20the%20pixels%20that%20correspond%20to%20the%20black%20dot%20(%60value%20%3C%20128%60).%20We%20then%20compute%20the%20mean%20of%20their%20coordinates%20(the%20barycenter)%20to%20track%20the%20X%20and%20Y%20positions.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(PIL%2C%20frames%2C%20io%2C%20mo%2C%20np%2C%20time)%3A%0A%20%20%20%20tracked_positions%20%3D%20%5B%5D%0A%20%20%20%20_h%2C%20_w%20%3D%20frames.shape%5B1%5D%2C%20frames.shape%5B2%5D%0A%0A%20%20%20%20for%20_t%2C%20frame%20in%20enumerate(frames)%3A%0A%20%20%20%20%20%20%20%20%23%201.%20Find%20indices%20where%20pixels%20are%20black%0A%20%20%20%20%20%20%20%20y_coords%2C%20x_coords%20%3D%20np.where(frame%20%3C%20128)%0A%0A%20%20%20%20%20%20%20%20if%20len(x_coords)%20%3E%200%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%23%20Compute%20barycenter%0A%20%20%20%20%20%20%20%20%20%20%20%20cx%20%3D%20int(np.mean(x_coords))%0A%20%20%20%20%20%20%20%20%20%20%20%20cy%20%3D%20int(np.mean(y_coords))%0A%20%20%20%20%20%20%20%20%20%20%20%20tracked_positions.append(%5B_t%20%2B%201%2C%20cx%2C%20cy%5D)%0A%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20cx%2C%20cy%20%3D%20int(_w%20%2F%202)%2C%20int(_h%20%2F%202)%0A%20%20%20%20%20%20%20%20%20%20%20%20tracked_positions.append(%5B_t%20%2B%201%2C%20None%2C%20None%5D)%0A%0A%20%20%20%20%20%20%20%20%23%202.%20Draw%20a%20red%20crosshair%20on%20the%20RGB%20version%20of%20the%20frame%0A%20%20%20%20%20%20%20%20%23%20Convert%20grayscale%20frame%20to%203-channel%20RGB%20image%0A%20%20%20%20%20%20%20%20rgb_frame%20%3D%20np.stack(%5Bframe%2C%20frame%2C%20frame%5D%2C%20axis%3D-1)%0A%0A%20%20%20%20%20%20%20%20%23%20Color%20crosshair%20red%20%5B245%2C%2070%2C%2058%5D%0A%20%20%20%20%20%20%20%20rgb_frame%5Bmax(0%2C%20cy-1)%3Amin(_h%2C%20cy%2B2)%2C%20max(0%2C%20cx-10)%3Amin(_w%2C%20cx%2B11)%5D%20%3D%20%5B245%2C%2070%2C%2058%5D%0A%20%20%20%20%20%20%20%20rgb_frame%5Bmax(0%2C%20cy-10)%3Amin(_h%2C%20cy%2B11)%2C%20max(0%2C%20cx-1)%3Amin(_w%2C%20cx%2B2)%5D%20%3D%20%5B245%2C%2070%2C%2058%5D%0A%0A%20%20%20%20%20%20%20%20%23%203.%20Convert%20array%20to%20PNG%20bytes%20and%20display%20in%20the%20cell%20output%0A%20%20%20%20%20%20%20%20img%20%3D%20PIL.Image.fromarray(rgb_frame)%0A%20%20%20%20%20%20%20%20buf%20%3D%20io.BytesIO()%0A%20%20%20%20%20%20%20%20img.save(buf%2C%20format%3D%22PNG%22)%0A%0A%20%20%20%20%20%20%20%20mo.output.replace(%0A%20%20%20%20%20%20%20%20%20%20%20%20mo.md(%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20f%22%22%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%23%23%20Tracking%20Frame%20%7B_t%2B1%7D%2F%7Blen(frames)%7D%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20*%20**Barycenter%20Coordinates**%3A%20(%7Bcx%7D%2C%20%7Bcy%7D)%0A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7Bmo.image(src%3Dbuf.getvalue()%2C%20width%3D450)%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20%20%20%20%20time.sleep(0.015)%0A%20%20%20%20return%20(tracked_positions%2C)%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20Physics%20Lab%20Analysis%3A%20Measurement%2C%20Resolution%20%26%20Uncertainty%0A%0A%20%20%20%20In%20physics%2C%20making%20a%20measurement%20means%20mapping%20a%20physical%20property%20to%20a%20numerical%20value.%20When%20measuring%20from%20digital%20images%2C%20this%20mapping%20introduces%20specific%20limitations%2C%20errors%2C%20and%20uncertainties.%0A%0A%20%20%20%20%23%23%23%20%20Spatial%20Resolution%20%26%20Quantization%20Error%0A%20%20%20%20A%20digital%20image%20is%20discretized%20into%20a%20grid%20of%20**pixels**.%0A%20%20%20%20*%20The%20smallest%20measurable%20distance%20change%20in%20raw%20coordinates%20is%20%241%5Ctext%7B%20pixel%7D%24%20(%24%5CDelta%20x%20%3D%201%24).%0A%20%20%20%20*%20This%20spatial%20discretization%20leads%20to%20**Quantization%20Error**.%20For%20a%20uniform%20distribution%20of%20values%20within%20a%20pixel%2C%20the%20standard%20uncertainty%20is%3A%0A%20%20%20%20%20%20%24%24%5Csigma_q%20%3D%20%5Cfrac%7B%5CDelta%20x%7D%7B%5Csqrt%7B12%7D%7D%20%5Capprox%200.289%5Ctext%7B%20pixels%7D%24%24%0A%0A%20%20%20%20%23%23%23%23%20Sub-Pixel%20Resolution%20%26%20Centroid%20Estimation%3A%0A%20%20%20%20Notice%20that%20our%20NumPy%20tracker%20calculates%20the%20barycenter%20(centroid)%20using%20%60np.mean()%60.%0A%20%20%20%20*%20By%20averaging%20the%20coordinates%20of%20all%20pixels%20that%20make%20up%20the%20dot%2C%20we%20can%20calculate%20the%20center%20with%20**sub-pixel%20accuracy**%20(less%20than%20%241%5Ctext%7B%20pixel%7D%24%20error!).%0A%20%20%20%20*%20**Lab%20Exercise**%3A%20Reduce%20the%20**Dot%20Radius**%20slider%20to%20%242%24%20or%20%243%24%20pixels.%20What%20happens%20to%20the%20smoothness%20of%20the%20tracked%20position%20graph%3F%20Why%20does%20a%20larger%20dot%20size%20yield%20a%20smoother%20trajectory%3F%20(Hint%3A%20Averaging%20more%20pixels%20reduces%20the%20statistical%20uncertainty%20of%20the%20centroid).%0A%0A%20%20%20%20%23%23%23%20%20Temporal%20Resolution%20%26%20Nyquist-Shannon%20Sampling%0A%20%20%20%20A%20video%20is%20a%20sequence%20of%20static%20frames%20captured%20at%20a%20specific%20sampling%20frequency%20(Frame%20Rate)%20%24f_s%24%3A%0A%20%20%20%20*%20To%20reconstruct%20a%20physical%20motion%20of%20frequency%20%24f_%7B%5Ctext%7Bmotion%7D%7D%24%20without%20**aliasing**%2C%20we%20must%20satisfy%20the%20**Nyquist%20Criterion**%3A%0A%20%20%20%20%20%20%24%24f_s%20%3E%202%20%5Ccdot%20f_%7B%5Ctext%7Bmotion%7D%7D%24%24%0A%20%20%20%20*%20If%20%24f_s%20%5Cle%202%20%5Ccdot%20f_%7B%5Ctext%7Bmotion%7D%7D%24%20(i.e.%20frequency%20%3E%200.5%20cycles%2Fframe)%2C%20the%20motion%20will%20appear%20slower%2C%20stationary%2C%20or%20even%20reversed%20in%20direction%20(temporal%20aliasing).%0A%20%20%20%20*%20**Lab%20Exercise%20(Temporal%20Spacing)**%3A%20Drag%20the%20**Number%20of%20Frames**%20slider%20down%20to%20a%20low%20value%20(e.g.%2C%20%2415%24%20or%20%2420%24).%20Observe%20the%20resulting%20Plotly%20trajectory.%20Is%20it%20still%20a%20smooth%20sine%20wave%3F%20How%20does%20temporal%20spacing%20affect%20our%20ability%20to%20resolve%20the%20shape%20of%20the%20trajectory%3F%0A%20%20%20%20*%20**Lab%20Exercise%20(Aliasing)**%3A%20Slowly%20increase%20the%20**Frequency**%20slider%20from%20%240.02%24%20up%20to%20%240.45%24%2C%20and%20then%20exceed%20the%20Nyquist%20limit%20by%20setting%20it%20to%20%240.52%24%20or%20%240.55%24.%0A%20%20%20%20%20%20*%20Observe%20the%20live%20tracking%20frames%20animation.%20What%20does%20the%20dot's%20motion%20look%20like%20when%20frequency%20is%20%240.50%24%20(exactly%20Nyquist)%3F%0A%20%20%20%20%20%20*%20Look%20at%20the%20**Spectral%20Analysis%20(FFT)**%20cell.%20What%20happens%20to%20the%20detected%20peak%20frequency%20when%20the%20true%20input%20frequency%20is%20set%20to%20%240.55%24%3F%20(Hint%3A%20Notice%20the%20warning%20alert%20that%20displays%20when%20the%20true%20frequency%20crosses%20the%200.5%20Nyquist%20threshold!).%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell(column%3D1%2C%20hide_code%3DTrue)%0Adef%20_(mo)%3A%0A%20%20%20%20mo.md(r%22%22%22%0A%20%20%20%20%23%23%20Trajectory%20Post-processing%0A%0A%20%20%20%20We%20plot%20the%20tracked%20X%20coordinates%20over%20frame%20numbers%20to%20show%20the%20sinusoidal%20movement.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(go%2C%20np%2C%20tracked_positions)%3A%0A%20%20%20%20positions_arr%20%3D%20np.array(tracked_positions)%0A%20%20%20%20frames_vec%20%3D%20positions_arr%5B%3A%2C%200%5D%0A%20%20%20%20x_vec%20%3D%20positions_arr%5B%3A%2C%201%5D%0A%0A%20%20%20%20fig%20%3D%20go.Figure()%0A%20%20%20%20fig.add_trace(%0A%20%20%20%20%20%20%20%20go.Scatter(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3Dframes_vec%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3Dx_vec%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20mode%3D'lines%2Bmarkers'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20name%3D'Tracked%20X%20Position'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20line%3Ddict(color%3D'rgb(58%2C70%2C245)'%2C%20width%3D2)%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20marker%3Ddict(size%3D4)%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20)%0A%0A%20%20%20%20fig.update_layout(%0A%20%20%20%20%20%20%20%20title%3D'Dot%20Position%20along%20X-axis%20over%20Time'%2C%0A%20%20%20%20%20%20%20%20xaxis_title%3D'Frame%20number'%2C%0A%20%20%20%20%20%20%20%20yaxis_title%3D'X%20Coordinate%20(pixels)'%2C%0A%20%20%20%20%20%20%20%20plot_bgcolor%3D'rgba(0%2C0%2C0%2C0)'%2C%0A%20%20%20%20%20%20%20%20width%3D850%2C%0A%20%20%20%20%20%20%20%20height%3D400%2C%0A%20%20%20%20%20%20%20%20legend%3Ddict(x%3D0%2C%20y%3D1)%0A%20%20%20%20)%0A%0A%20%20%20%20fig.show()%0A%20%20%20%20return%20frames_vec%2C%20x_vec%0A%0A%0A%40app.cell%0Adef%20_(frequency%2C%20go%2C%20np%2C%20x_vec)%3A%0A%20%20%20%20%23%20Perform%20Fast%20Fourier%20Transform%20(FFT)%20on%20the%20detrended%20X%20coordinates%0A%20%20%20%20x_detrended%20%3D%20x_vec%20-%20np.mean(x_vec)%0A%20%20%20%20fft_vals%20%3D%20np.abs(np.fft.rfft(x_detrended))%0A%20%20%20%20freqs%20%3D%20np.fft.rfftfreq(len(x_vec)%2C%20d%3D1.0)%20%23%20frequency%20in%20cycles%2Fframe%0A%0A%20%20%20%20peak_idx%20%3D%20np.argmax(fft_vals)%0A%20%20%20%20peak_freq%20%3D%20freqs%5Bpeak_idx%5D%0A%0A%20%20%20%20%23%20Plot%20the%20power%20spectrum%0A%20%20%20%20fig_fft%20%3D%20go.Figure()%0A%20%20%20%20fig_fft.add_trace(%0A%20%20%20%20%20%20%20%20go.Bar(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3Dfreqs%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3Dfft_vals%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20name%3D'Spectral%20Power'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20marker%3Ddict(color%3D'rgb(23%2C15%2C48)')%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20)%0A%0A%20%20%20%20fig_fft.update_layout(%0A%20%20%20%20%20%20%20%20title%3D'Frequency%20Power%20Spectrum%20(FFT)'%2C%0A%20%20%20%20%20%20%20%20xaxis_title%3D'Frequency%20(cycles%2Fframe)'%2C%0A%20%20%20%20%20%20%20%20yaxis_title%3D'Spectral%20Amplitude'%2C%0A%20%20%20%20%20%20%20%20plot_bgcolor%3D'rgba(0%2C0%2C0%2C0)'%2C%0A%20%20%20%20%20%20%20%20width%3D850%2C%0A%20%20%20%20%20%20%20%20height%3D350%0A%20%20%20%20)%0A%0A%20%20%20%20%23%20Check%20for%20aliasing%0A%20%20%20%20true_f%20%3D%20frequency.value%0A%20%20%20%20nyquist_f%20%3D%200.5%0A%20%20%20%20aliasing_alert%20%3D%20%22%22%0A%20%20%20%20if%20true_f%20%3E%20nyquist_f%3A%0A%20%20%20%20%20%20%20%20_epsilon%20%3D%20true_f%20-%200.5%0A%20%20%20%20%20%20%20%20_beat_freq%20%3D%202%20*%20_epsilon%0A%20%20%20%20%20%20%20%20aliasing_alert%20%3D%20f%22%22%22%0A%20%20%20%20%20%20%20%20%3E%20%5B!WARNING%5D%0A%20%20%20%20%20%20%20%20%3E%20**Aliasing%20Detected!**%20The%20true%20input%20frequency%20(%60%7Btrue_f%3A.2f%7D%60)%20exceeds%20the%20**Nyquist%20Limit**%20of%20%60%7Bnyquist_f%3A.2f%7D%60%20cycles%2Fframe.%20%0A%20%20%20%20%20%20%20%20%3E%20The%20signal%20is%20undersampled%20(less%20than%202%20frames%20per%20oscillation%20cycle)%2C%20causing%20the%20system%20to%20observe%20a%20false%20lower%20frequency%20of%20%60%7Bpeak_freq%3A.2f%7D%60%20cycles%2Fframe.%0A%0A%20%20%20%20%20%20%20%20%23%23%23%23%20%F0%9F%94%8D%20Why%20do%20we%20see%20a%20slow%20%22envelope%22%20(beating)%3F%0A%20%20%20%20%20%20%20%20When%20we%20sample%20a%20sine%20wave%20of%20frequency%20%24f%20%3D%200.5%20%2B%20%5C%5Cepsilon%24%20(here%2C%20%24%5C%5Cepsilon%20%3D%20%7B_epsilon%3A.2f%7D%24)%2C%20the%20discrete-time%20signal%20behaves%20as%3A%0A%20%20%20%20%20%20%20%20%24%24x%5Bn%5D%20%3D%20A%20%5C%5Csin(2%5C%5Cpi%20(0.5%20%2B%20%5C%5Cepsilon)%20n)%20%3D%20A%20(-1)%5En%20%5C%5Csin(2%5C%5Cpi%20%5C%5Cepsilon%20n)%24%24%0A%20%20%20%20%20%20%20%20This%20is%20a%20**suppressed-carrier%20amplitude%20modulation%20(AM)**%3A%0A%20%20%20%20%20%20%20%20*%20The%20**inner%20carrier**%20has%20a%20frequency%20of%20exactly%20%240.5%24%20cycles%2Fframe%20(represented%20by%20the%20alternating%20%24(-1)%5En%24%20term).%0A%20%20%20%20%20%20%20%20*%20The%20**slow%20envelope**%20modulates%20the%20amplitude%20at%20a%20frequency%20of%20%24%5C%5Cepsilon%20%3D%20%7B_epsilon%3A.2f%7D%24%20cycles%2Fframe%20(period%20of%20%60%7B1%2F_epsilon%3A.1f%7D%60%20frames).%0A%0A%20%20%20%20%20%20%20%20%23%23%23%23%20%F0%9F%93%8A%20Why%20does%20the%20FFT%20only%20show%20a%20single%20peak%20at%20%60%7Bpeak_freq%3A.2f%7D%60%3F%0A%20%20%20%20%20%20%20%20In%20amplitude%20modulation%2C%20the%20spectral%20energy%20lies%20in%20the%20sidebands%20around%20the%20carrier%3A%0A%20%20%20%20%20%20%20%20%24%24f_c%20%5C%5Cpm%20f_m%20%3D%200.5%20%5C%5Cpm%20%7B_epsilon%3A.2f%7D%24%24%0A%20%20%20%20%20%20%20%20which%20correspond%20to%20%60%7B0.5%20-%20_epsilon%3A.2f%7D%60%20and%20%60%7B0.5%20%2B%20_epsilon%3A.2f%7D%60%20cycles%2Fframe.%0A%20%20%20%20%20%20%20%20Because%20the%20discrete%20spectrum%20is%20periodic%20and%20symmetric%2C%20both%20of%20these%20wrap%20around%20to%20the%20**exact%20same%20frequency**%20of%20%60%7Bpeak_freq%3A.2f%7D%60%20cycles%2Fframe.%20%0A%0A%20%20%20%20%20%20%20%20There%20is%20**no**%20energy%20at%20the%20envelope%20frequency%20of%20%60%7B_epsilon%3A.2f%7D%60%20in%20the%20raw%20signal%20because%20the%20alternating%20%24(-1)%5En%24%20carrier%20cancels%20out%20any%20slow%20offset%20(the%20mean%20is%20zero).%20However%2C%20if%20you%20take%20the%20**absolute%20value**%20of%20the%20coordinates%20(rectification%2C%20%24%7Cx%5Bn%5D%7C%24)%2C%20it%20removes%20the%20%24(-1)%5En%24%20carrier%2C%20and%20the%20FFT%20of%20%24%7Cx%5Bn%5D%7C%24%20will%20show%20a%20clear%20peak%20at%20the%20envelope%20beat%20frequency%20of%20%242%5C%5Cepsilon%20%3D%20%7B_beat_freq%3A.2f%7D%24%20cycles%2Fframe!%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20return%20aliasing_alert%2C%20fig_fft%2C%20peak_freq%2C%20true_f%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(aliasing_alert%2C%20fig_fft%2C%20mo%2C%20peak_freq%2C%20true_f)%3A%0A%20%20%20%20mo.md(f%22%22%22%0A%20%20%20%20%23%23%20Spectral%20Analysis%20(Fourier%20Transform)%0A%20%20%20%20To%20identify%20the%20dominant%20frequency%20of%20oscillation%20in%20the%20time%20domain%2C%20we%20compute%20the%20Discrete%20Fourier%20Transform%20of%20the%20spatial%20coordinates%3A%0A%0A%20%20%20%20*%20**True%20Input%20Frequency**%3A%20%60%7Btrue_f%3A.4f%7D%60%20cycles%2Fframe%0A%20%20%20%20*%20**Detected%20Peak%20Frequency**%3A%20%60%7Bpeak_freq%3A.4f%7D%60%20cycles%2Fframe%0A%20%20%20%20*%20**Measured%20Oscillation%20Period**%3A%20%60%7B1%2Fpeak_freq%3A.2f%7D%60%20frames%0A%0A%20%20%20%20%7Baliasing_alert%7D%0A%0A%20%20%20%20%7Bmo.as_html(fig_fft)%7D%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(frames_vec%2C%20go%2C%20np%2C%20peak_freq%2C%20x_vec)%3A%0A%20%20%20%20%23%20Fit%20the%20data%20to%20a%20sine%20wave%3A%20x(t)%20%3D%20A*sin(omega*t)%20%2B%20B*cos(omega*t)%20%2B%20C%0A%20%20%20%20omega%20%3D%202%20*%20np.pi%20*%20peak_freq%0A%20%20%20%20t_vals%20%3D%20frames_vec%20-%201%20%20%23%200-indexed%20time%0A%0A%20%20%20%20%23%20Design%20matrix%20for%20linear%20least-squares%0A%20%20%20%20M%20%3D%20np.column_stack(%5Bnp.sin(omega%20*%20t_vals)%2C%20np.cos(omega%20*%20t_vals)%2C%20np.ones_like(t_vals)%5D)%0A%0A%20%20%20%20%23%20Solve%20least-squares%0A%20%20%20%20params%2C%20_%2C%20_%2C%20_%20%3D%20np.linalg.lstsq(M%2C%20x_vec%2C%20rcond%3DNone)%0A%20%20%20%20fit_x%20%3D%20M%20%40%20params%0A%0A%20%20%20%20%23%20Compute%20amplitude%20and%20residuals%0A%20%20%20%20amplitude_fit%20%3D%20np.sqrt(params%5B0%5D**2%20%2B%20params%5B1%5D**2)%0A%20%20%20%20offset_fit%20%3D%20params%5B2%5D%0A%20%20%20%20residuals%20%3D%20x_vec%20-%20fit_x%0A%20%20%20%20rmse%20%3D%20np.sqrt(np.mean(residuals**2))%0A%0A%20%20%20%20%23%20Plot%20raw%20vs%20fitted%20trajectory%0A%20%20%20%20fig_fit%20%3D%20go.Figure()%0A%20%20%20%20fig_fit.add_trace(%0A%20%20%20%20%20%20%20%20go.Scatter(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3Dframes_vec%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3Dx_vec%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20mode%3D'markers'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20name%3D'Measured%20positions'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20marker%3Ddict(color%3D'rgb(58%2C70%2C245)'%2C%20size%3D6)%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20)%0A%20%20%20%20fig_fit.add_trace(%0A%20%20%20%20%20%20%20%20go.Scatter(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3Dframes_vec%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3Dfit_x%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20mode%3D'lines'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20name%3D'Least-Squares%20Sine%20Fit'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20line%3Ddict(color%3D'rgb(245%2C70%2C58)'%2C%20width%3D2)%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20)%0A%20%20%20%20fig_fit.update_layout(%0A%20%20%20%20%20%20%20%20title%3D'Trajectory%20Fitting%20%26%20Residuals'%2C%0A%20%20%20%20%20%20%20%20xaxis_title%3D'Frame%20number'%2C%0A%20%20%20%20%20%20%20%20yaxis_title%3D'X%20Coordinate%20(pixels)'%2C%0A%20%20%20%20%20%20%20%20plot_bgcolor%3D'rgba(0%2C0%2C0%2C0)'%2C%0A%20%20%20%20%20%20%20%20width%3D850%2C%0A%20%20%20%20%20%20%20%20height%3D380%2C%0A%20%20%20%20%20%20%20%20legend%3Ddict(x%3D0%2C%20y%3D1)%0A%20%20%20%20)%0A%20%20%20%20return%20amplitude_fit%2C%20fig_fit%2C%20offset_fit%2C%20rmse%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(amplitude_fit%2C%20fig_fit%2C%20mo%2C%20offset_fit%2C%20rmse)%3A%0A%20%20%20%20mo.md(f%22%22%22%0A%20%20%20%20%23%23%20Least-Squares%20Fitting%20%26%20Experimental%20Uncertainty%0A%20%20%20%20We%20fit%20the%20trajectory%20to%20a%20sinusoidal%20model%20%24x(t)%20%3D%20A%20%5C%5Ccos(%5C%5Comega%20t%20%2B%20%5C%5Cphi)%20%2B%20C%24%20using%20linear%20least-squares%3A%0A%0A%20%20%20%20*%20**Fitted%20Amplitude**%3A%20%60%7Bamplitude_fit%3A.2f%7D%60%20pixels%0A%20%20%20%20*%20**Fitted%20Offset%20(Center%20of%20Motion)**%3A%20%60%7Boffset_fit%3A.2f%7D%60%20pixels%0A%20%20%20%20*%20**Residual%20Standard%20Deviation%20(RMSE)**%3A%20%60%7Brmse%3A.4f%7D%60%20pixels%0A%0A%20%20%20%20The%20**RMSE**%20represents%20the%20experimental%20measurement%20uncertainty.%20Under%20pure%20quantisation%20error%20(with%201-pixel%20resolution)%2C%20the%20theoretical%20minimum%20uncertainty%20is%20%24%5C%5Csigma_q%20%5C%5Capprox%200.289%24%20pixels.%20If%20your%20RMSE%20is%20below%20this%2C%20you%20have%20achieved%20**sub-pixel%20resolution**!%0A%0A%20%20%20%20%7Bmo.as_html(fig_fit)%7D%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell(column%3D2)%0Adef%20_()%3A%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20_(go%2C%20height%2C%20np%2C%20num_frames%2C%20radius)%3A%0A%20%20%20%20%23%20Sensitivity%20Analysis%3A%20Sweep%20Video%20Width%20(Resolution)%20and%20compute%20Physical%20RMSE%0A%20%20%20%20_n_frames%20%3D%20num_frames.value%0A%20%20%20%20_h%20%3D%20height.value%0A%20%20%20%20_r%20%3D%20radius.value%0A%20%20%20%20_L_physical%20%3D%201.0%20%23%201.0%20meter%20physical%20width%0A%0A%20%20%20%20_widths%20%3D%20np.arange(100%2C%201001%2C%20100)%0A%20%20%20%20_physical_rmse_vals%20%3D%20%5B%5D%0A%0A%20%20%20%20for%20_w%20in%20_widths%3A%0A%20%20%20%20%20%20%20%20%23%20Generate%20frames%0A%20%20%20%20%20%20%20%20_frames%20%3D%20np.ones((_n_frames%2C%20_h%2C%20_w)%2C%20dtype%3Dnp.uint8)%20*%20255%0A%20%20%20%20%20%20%20%20for%20_t%20in%20range(_n_frames)%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20x_center_float%20%3D%20_w%20%2F%202%20%2B%20(_w%20%2F%202%20-%20_r%20-%2020)%20*%20np.sin(2%20*%20np.pi%20*%20_t%20%2F%20(_n_frames%20%2F%202))%0A%20%20%20%20%20%20%20%20%20%20%20%20_Y%2C%20_X%20%3D%20np.ogrid%5B%3A_h%2C%20%3A_w%5D%0A%20%20%20%20%20%20%20%20%20%20%20%20_mask%20%3D%20(_X%20-%20x_center_float)**2%20%2B%20(_Y%20-%20_h%2F2)**2%20%3C%3D%20_r**2%0A%20%20%20%20%20%20%20%20%20%20%20%20_frames%5B_t%5D%5B_mask%5D%20%3D%200%0A%0A%20%20%20%20%20%20%20%20%23%20Track%0A%20%20%20%20%20%20%20%20_tracked_x%20%3D%20%5B%5D%0A%20%20%20%20%20%20%20%20for%20_frame%20in%20_frames%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20_%2C%20_x_coords%20%3D%20np.where(_frame%20%3C%20128)%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20len(_x_coords)%20%3E%200%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20_tracked_x.append(np.mean(_x_coords))%0A%20%20%20%20%20%20%20%20%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20_tracked_x.append(_w%20%2F%202)%0A%0A%20%20%20%20%20%20%20%20%23%20Fit%0A%20%20%20%20%20%20%20%20_omega%20%3D%202%20*%20np.pi%20*%20(2%20%2F%20_n_frames)%0A%20%20%20%20%20%20%20%20_t_vals%20%3D%20np.arange(_n_frames)%0A%20%20%20%20%20%20%20%20_M%20%3D%20np.column_stack(%5Bnp.sin(_omega%20*%20_t_vals)%2C%20np.cos(_omega%20*%20_t_vals)%2C%20np.ones_like(_t_vals)%5D)%0A%20%20%20%20%20%20%20%20_params%2C%20_%2C%20_%2C%20_%20%3D%20np.linalg.lstsq(_M%2C%20_tracked_x%2C%20rcond%3DNone)%0A%20%20%20%20%20%20%20%20_fit_x%20%3D%20_M%20%40%20_params%0A%20%20%20%20%20%20%20%20_rmse%20%3D%20np.sqrt(np.mean((_tracked_x%20-%20_fit_x)**2))%0A%0A%20%20%20%20%20%20%20%20%23%20Convert%20pixel%20RMSE%20to%20physical%20RMSE%20(meters)%0A%20%20%20%20%20%20%20%20_physical_rmse%20%3D%20_rmse%20*%20(_L_physical%20%2F%20_w)%0A%20%20%20%20%20%20%20%20_physical_rmse_vals.append(_physical_rmse)%0A%0A%20%20%20%20%23%20Plot%201%3A%20Physical%20Uncertainty%20vs%20Resolution%0A%20%20%20%20fig_res%20%3D%20go.Figure()%0A%20%20%20%20fig_res.add_trace(%0A%20%20%20%20%20%20%20%20go.Scatter(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3D_widths%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3D_physical_rmse_vals%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20mode%3D'lines%2Bmarkers'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20name%3D'Physical%20RMSE'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20line%3Ddict(color%3D'rgb(58%2C70%2C245)'%2C%20width%3D2)%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20)%0A%20%20%20%20fig_res.update_layout(%0A%20%20%20%20%20%20%20%20title%3D'Physical%20Uncertainty%20vs.%20Resolution'%2C%0A%20%20%20%20%20%20%20%20xaxis_title%3D'Image%20Width%20(pixels)'%2C%0A%20%20%20%20%20%20%20%20yaxis_title%3D'Uncertainty%20(meters)'%2C%0A%20%20%20%20%20%20%20%20plot_bgcolor%3D'rgba(0%2C0%2C0%2C0)'%2C%0A%20%20%20%20%20%20%20%20width%3D400%2C%0A%20%20%20%20%20%20%20%20height%3D320%0A%20%20%20%20)%0A%0A%20%20%20%20%23%20Sensitivity%20Analysis%3A%20Sweep%20Coordinate%20Noise%20and%20compute%20Fit%20RMSE%0A%20%20%20%20_w_fixed%20%3D%20600%0A%20%20%20%20%23%20True%20positions%0A%20%20%20%20_true_x_clean%20%3D%20%5B%5D%0A%20%20%20%20for%20_t%20in%20range(_n_frames)%3A%0A%20%20%20%20%20%20%20%20x_center_float%20%3D%20_w_fixed%20%2F%202%20%2B%20(_w_fixed%20%2F%202%20-%20_r%20-%2020)%20*%20np.sin(2%20*%20np.pi%20*%20_t%20%2F%20(_n_frames%20%2F%202))%0A%20%20%20%20%20%20%20%20_true_x_clean.append(x_center_float)%0A%20%20%20%20_true_x_clean%20%3D%20np.array(_true_x_clean)%0A%0A%20%20%20%20_noise_stds%20%3D%20np.linspace(0.0%2C%203.0%2C%2010)%0A%20%20%20%20_fit_rmse_vals%20%3D%20%5B%5D%0A%0A%20%20%20%20for%20_noise_std%20in%20_noise_stds%3A%0A%20%20%20%20%20%20%20%20%23%20Add%20random%20coordinate%20noise%0A%20%20%20%20%20%20%20%20_noisy_x%20%3D%20_true_x_clean%20%2B%20np.random.normal(0%2C%20_noise_std%2C%20_n_frames)%0A%0A%20%20%20%20%20%20%20%20%23%20Fit%0A%20%20%20%20%20%20%20%20_omega%20%3D%202%20*%20np.pi%20*%20(2%20%2F%20_n_frames)%0A%20%20%20%20%20%20%20%20_t_vals%20%3D%20np.arange(_n_frames)%0A%20%20%20%20%20%20%20%20_M%20%3D%20np.column_stack(%5Bnp.sin(_omega%20*%20_t_vals)%2C%20np.cos(_omega%20*%20_t_vals)%2C%20np.ones_like(_t_vals)%5D)%0A%20%20%20%20%20%20%20%20_params%2C%20_%2C%20_%2C%20_%20%3D%20np.linalg.lstsq(_M%2C%20_noisy_x%2C%20rcond%3DNone)%0A%20%20%20%20%20%20%20%20_fit_x%20%3D%20_M%20%40%20_params%0A%20%20%20%20%20%20%20%20_rmse%20%3D%20np.sqrt(np.mean((_noisy_x%20-%20_fit_x)**2))%0A%20%20%20%20%20%20%20%20_fit_rmse_vals.append(_rmse)%0A%0A%20%20%20%20%23%20Plot%202%3A%20Fit%20RMSE%20vs%20Coordinate%20Noise%0A%20%20%20%20fig_noise%20%3D%20go.Figure()%0A%20%20%20%20fig_noise.add_trace(%0A%20%20%20%20%20%20%20%20go.Scatter(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3D_noise_stds%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3D_fit_rmse_vals%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20mode%3D'lines%2Bmarkers'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20name%3D'Measured%20RMSE'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20line%3Ddict(color%3D'rgb(245%2C70%2C58)'%2C%20width%3D2)%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20)%0A%20%20%20%20%23%20Add%20a%20theoretical%20x%3Dy%20line%0A%20%20%20%20fig_noise.add_trace(%0A%20%20%20%20%20%20%20%20go.Scatter(%0A%20%20%20%20%20%20%20%20%20%20%20%20x%3D_noise_stds%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20y%3D_noise_stds%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20mode%3D'lines'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20name%3D'Theoretical%20Limit'%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20line%3Ddict(color%3D'gray'%2C%20dash%3D'dash')%0A%20%20%20%20%20%20%20%20)%0A%20%20%20%20)%0A%20%20%20%20fig_noise.update_layout(%0A%20%20%20%20%20%20%20%20title%3D'Fit%20Uncertainty%20vs.%20Tracking%20Noise'%2C%0A%20%20%20%20%20%20%20%20xaxis_title%3D'Added%20Noise%20Std%20Dev%20(pixels)'%2C%0A%20%20%20%20%20%20%20%20yaxis_title%3D'Experimental%20Fit%20RMSE%20(pixels)'%2C%0A%20%20%20%20%20%20%20%20plot_bgcolor%3D'rgba(0%2C0%2C0%2C0)'%2C%0A%20%20%20%20%20%20%20%20width%3D400%2C%0A%20%20%20%20%20%20%20%20height%3D320%2C%0A%20%20%20%20%20%20%20%20legend%3Ddict(x%3D0%2C%20y%3D1)%0A%20%20%20%20)%0A%20%20%20%20return%20fig_noise%2C%20fig_res%0A%0A%0A%40app.cell(hide_code%3DTrue)%0Adef%20_(fig_noise%2C%20fig_res%2C%20mo)%3A%0A%20%20%20%20mo.md(f%22%22%22%0A%20%20%20%20%23%23%20Sensitivity%20Analysis%20Dashboard%0A%0A%20%20%20%20To%20understand%20the%20physics%20of%20measurement%20errors%20and%20camera%20calibration%2C%20we%20run%20two%20automated%20parameter%20sweeps%3A%0A%0A%20%20%20%201.%20**Resolution%20Sensitivity%20(Left)**%3A%20Assuming%20the%20image%20width%20corresponds%20to%20a%20fixed%20physical%20size%20of%20%241.0%20m%24%2C%20we%20sweep%20the%20resolution.%20As%20resolution%20increases%2C%20the%20physical%20size%20of%20each%20pixel%20shrinks%2C%20and%20the%20physical%20tracking%20uncertainty%20decays%20as%20%241%2FWidth%24.%0A%20%20%20%202.%20**Noise%20Sensitivity%20(Right)**%3A%20We%20artificially%20inject%20random%20Gaussian%20noise%20into%20our%20tracked%20coordinates.%20The%20resulting%20least-squares%20fit%20**RMSE**%20closely%20matches%20the%20injected%20noise%20level%20(dashed%20line)%2C%20proving%20that%20fit%20residuals%20act%20as%20a%20direct%20estimator%20of%20experimental%20noise.%0A%0A%20%20%20%20%7Bmo.hstack(%5Bfig_res%2C%20fig_noise%5D%2C%20justify%3D%22space-around%22)%7D%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+    <!-- This is a portal for the data editor to render in -->
+    <div id="portal" data-testid="glide-portal" style="position: fixed; left: 0; top: 0; z-index: 9999"></div>
+    <script data-marimo="true">
+      window.__MARIMO_MOUNT_CONFIG__ = {
+            "filename": "notebook.py",
+            "cwd": "",
+            "mode": "edit",
+            "version": "0.22.0",
+            "serverToken": "unused",
+            "config": {"ai": {"custom_providers": {}, "models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "copilot": false, "signature_hint_on_typing": false}, "diagnostics": {"sql_linter": true}, "display": {"cell_output": "below", "code_editor_font_size": 14, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": false, "theme": "system"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": false}}, "mcp": {"mcpServers": {}, "presets": []}, "package_management": {"manager": "pip"}, "runtime": {"auto_instantiate": false, "auto_reload": "off", "default_csv_encoding": "utf-8", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "columns"},
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null,
+        };
+    </script>
+  </body>
+</html>

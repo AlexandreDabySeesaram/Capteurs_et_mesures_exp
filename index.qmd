@@ -1,27 +1,22 @@
 ---
-title: Tracking objects with OpenCV
+title: "Méthodes expérimentales"
 toc: false
-format:
-  html:
-    page-layout: full
 ---
 
-# Welcome!
+Bienvenue sur le site du cours de méthodes expérimentales : vidéos de cours et travaux pratiques.
+Les notebooks des labs s'exécutent directement dans le navigateur, sans rien installer.
 
-* In this demo we will see how to use OpenCV to track an object in a video. We'll first select the object (Region Of Interest) then track it through the frame and finally we' ll plot the evolution of the barycenter of the object with regard to the frame number.
-
-* The notebooks can be executed online with binder [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AlexandreDabySeesaram/Tracking_video/main?urlpath=lab/tree/./demos/) (no download required).
-
-To run the notebook locally you'll need to setup an environment with opencv, matplotlib and numpy. Follow these steps to create a Conda environment named `tracking-ev` with Python 3.13 and all required packages:
-
-
-```bash
-# Create a new conda environment with Python 3.13
-conda create -n tracking-env python=3.13 -y
-
-# Activate the environment
-conda activate tracking-env
-
-# Install required packages: OpenCV (with contrib modules), NumPy, and Matplotlib
-conda install -c conda-forge opencv=4.8.0 matplotlib numpy -y
+```{=html}
+<div class="tuiles tuiles-2">
+  <a class="tuile tuile-lien" href="cours.html">
+    <div class="tuile-icone">🎬</div>
+    <h3>Cours</h3>
+    <p>Les vidéos des séances de cours.</p>
+  </a>
+  <a class="tuile tuile-lien" href="labs.html">
+    <div class="tuile-icone">🧪</div>
+    <h3>Labs</h3>
+    <p>Les travaux pratiques : sujets et notebooks à compléter dans le navigateur.</p>
+  </a>
+</div>
 ```

@@ -1,0 +1,11 @@
+{
+  "titre": "Lab N : titre du lab",
+  "sous_titre": "Méthodes expérimentales, travaux pratiques à compléter",
+  "notebooks": [
+    {
+      "nom": "exemple",
+      "titre": "TP 1 : titre du notebook",
+      "description": "Une phrase de description affichée sur la page d'accueil du lab."
+    }
+  ]
+}

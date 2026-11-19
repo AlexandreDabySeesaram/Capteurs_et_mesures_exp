@@ -1,0 +1,32 @@
+---
+title: "Cours"
+toc: false
+---
+
+Les vidéos des séances de cours. Cliquez sur une vidéo pour la lancer, ou sur son titre pour l'ouvrir sur YouTube.
+
+<!-- Pour changer une vidéo : remplacer l'adresse dans le shortcode {{< video ... >}} et dans le lien du titre. -->
+
+:::: {.grid}
+
+::: {.g-col-12 .g-col-md-6 .video-cours}
+#### [Séance 1](https://www.youtube.com/watch?v=ckkvBhO-jFo)
+{{< video https://www.youtube.com/watch?v=ckkvBhO-jFo title="Séance 1" >}}
+:::
+
+::: {.g-col-12 .g-col-md-6 .video-cours}
+#### [Séance 2](https://www.youtube.com/watch?v=ckkvBhO-jFo)
+{{< video https://www.youtube.com/watch?v=ckkvBhO-jFo title="Séance 2" >}}
+:::
+
+::: {.g-col-12 .g-col-md-6 .video-cours}
+#### [Séance 3](https://www.youtube.com/watch?v=ckkvBhO-jFo)
+{{< video https://www.youtube.com/watch?v=ckkvBhO-jFo title="Séance 3" >}}
+:::
+
+::: {.g-col-12 .g-col-md-6 .video-cours}
+#### [Séance 4](https://www.youtube.com/watch?v=ckkvBhO-jFo)
+{{< video https://www.youtube.com/watch?v=ckkvBhO-jFo title="Séance 4" >}}
+:::
+
+::::

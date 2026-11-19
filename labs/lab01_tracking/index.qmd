@@ -1,0 +1,48 @@
+---
+title: "Lab 1 : suivi d'objet dans une vidéo"
+toc: true
+---
+
+## Objectifs
+
+Mesurer un mouvement à partir d'une vidéo, et estimer la qualité de cette mesure. À la fin du lab, vous saurez :
+
+* repérer un objet dans une image numérique et suivre sa position image par image ;
+* passer d'une trajectoire en pixels à une fréquence d'oscillation (transformée de Fourier, ajustement par moindres carrés) ;
+* identifier les sources d'incertitude d'une mesure par vidéo : quantification spatiale, échantillonnage temporel (critère de Nyquist), étalonnage, parallaxe, bruit du capteur.
+
+## Déroulé
+
+Le lab se fait dans deux notebooks à compléter, qui s'exécutent **directement dans le navigateur** : [ouvrir les notebooks](marimo/site/index.html).
+
+**TP 1 : suivi d'un point avec NumPy.**
+On génère une vidéo synthétique d'un point qui oscille, on le suit en calculant le barycentre des pixels sombres,
+puis on analyse la trajectoire. On étudie la résolution sub-pixel, l'effet du nombre d'images et le repliement de spectre.
+
+**TP 2 : suivi d'un pendule avec OpenCV.**
+On suit le disque d'un pendule réel filmé à 60 images/s par corrélation de motif (*template matching*),
+on en déduit sa fréquence d'oscillation et on discute les erreurs systématiques et aléatoires.
+
+Dans chaque notebook, les cellules marquées **TODO** sont à compléter ; des indices et des vérifications automatiques vous guident.
+
+## Rendu
+
+Enregistrez votre travail avec `Ctrl/Cmd + S`, puis téléchargez chaque notebook (menu ☰ → *Export…* → *Python* → *Export notebook source*).
+Renommez les fichiers `NOM_Prenom_TP1.py` et `NOM_Prenom_TP2.py` et déposez-les à l'endroit indiqué par votre enseignant.
+
+## Pour aller plus loin : démonstration avec le tracker CSRT
+
+Le [notebook de démonstration](jup_tracking.ipynb) utilise le tracker CSRT d'OpenCV et une sélection interactive de la zone à suivre.
+Il s'exécute en ligne avec Binder [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AlexandreDabySeesaram/Tracking_video/main?urlpath=lab/tree/./labs/lab01_tracking/)
+ou sur votre ordinateur, dans un environnement Conda contenant OpenCV, Matplotlib et NumPy :
+
+```bash
+# Créer un environnement Conda avec Python 3.13
+conda create -n tracking-env python=3.13 -y
+
+# Activer l'environnement
+conda activate tracking-env
+
+# Installer OpenCV (avec les modules contrib), NumPy et Matplotlib
+conda install -c conda-forge opencv=4.8.0 matplotlib numpy -y
+```

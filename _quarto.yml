@@ -1,19 +1,29 @@
 execute:
   freeze: true
 project:
+  # Pages rendues : l'accueil et, pour chaque lab, ses .qmd / .ipynb (labs/_modele est ignoré car préfixé par _)
+  render:
+    - "index.qmd"
+    - "cours.qmd"
+    - "labs.qmd"
+    - "labs/*/*.qmd"
+    - "labs/*/*.ipynb"
   resources:
-    - "Resources"
-    - "style_site.scss"
+    # (pas de motif "assets/**" : il capturerait aussi les dossiers assets/ des sites marimo, corrigés compris)
+    - "assets/Images/**"
+    - "labs/*/Resources/**"
+    # Sites marimo WASM des TP à compléter (générés par python tools/build_marimo.py --site)
+    - "labs/*/marimo/site/**"
   type: website
   output-dir: public
 website:
-  title: "Tracking objects"
+  title: "Méthodes expérimentales"
   # pdf-engine: lualatex
-  description: "Tracking objects with OpenCV"
+  description: "Labs du cours de méthodes expérimentales"
   navbar:
     right:
       - text: "{{< iconify fa6-solid:rocket width=17 title=Binder >}}"
-        href: https://mybinder.org/v2/gh/AlexandreDabySeesaram/Tracking_video/main?urlpath=lab/tree/./demos/
+        href: https://mybinder.org/v2/gh/AlexandreDabySeesaram/Tracking_video/main?urlpath=lab/tree/./labs/
       - icon: github
         href: https://github.com/AlexandreDabySeesaram/Tracking_video
       - text: "{{< iconify fa6-solid:download width=17 title=download >}}"
@@ -25,10 +35,22 @@ website:
     style: "floating"
     search: true
     contents:
-      - text: "Home"
+      - text: "Accueil"
         href: index.qmd
-      - href: jup_tracking.ipynb
-        text: Tracking notebook
+      - text: "Cours"
+        href: cours.qmd
+      - section: "Labs"
+        href: labs.qmd
+        contents:
+          # Un bloc par lab (copier ce bloc pour le lab suivant)
+          - section: "Lab 1 : suivi vidéo"
+            contents:
+              - text: "Sujet"
+                href: labs/lab01_tracking/index.qmd
+              - text: "Notebook de démonstration"
+                href: labs/lab01_tracking/jup_tracking.ipynb
+              - text: "Notebooks à compléter"
+                href: labs/lab01_tracking/marimo/site/index.html
 
 
 format:
@@ -36,9 +58,9 @@ format:
   html:
     code-fold: show
     theme:
-      light: [flatly,Resources/style_site.scss]
-      dark: [darkly,Resources/style_site_dark.scss]      
-    css: styles.css
+      light: [flatly,assets/style_site.scss]
+      dark: [darkly,assets/style_site_dark.scss]      
+    css: assets/styles.css
     toc: true
     html-math-method: mathjax
 

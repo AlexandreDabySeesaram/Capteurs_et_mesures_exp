@@ -1,0 +1,16 @@
+{
+  "titre": "Lab 1 : suivi d'objet dans une vidéo",
+  "sous_titre": "Méthodes expérimentales, travaux pratiques à compléter",
+  "notebooks": [
+    {
+      "nom": "tracking_numpy",
+      "titre": "TP 1 : suivi d'un point avec NumPy",
+      "description": "Vidéo synthétique, barycentre, résolution sub-pixel, FFT et repliement de spectre."
+    },
+    {
+      "nom": "tracking_opencv",
+      "titre": "TP 2 : suivi d'un pendule avec OpenCV",
+      "description": "Vidéo réelle, corrélation de motif, fréquence d'oscillation et incertitudes."
+    }
+  ]
+}

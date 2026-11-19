@@ -1,0 +1,159 @@
+/*-- scss:defaults --*/
+// Base document colors
+$body-bg: rgb(23, 15, 57);
+// $body-color: #f3f3f3;
+$body-color: #f3f3f3;
+$link-color: #8c94ff; // bleu ENSTA éclairci, lisible sur fond marine (ancien : rgb(58, 70, 245))
+$primary: rgb(58, 70, 245);
+$navbar-bg: rgb(23, 15, 57);
+$warning_color: #ffb700;
+
+/*-- scss:rules --*/
+
+h1, h2, h3, h4 {
+    color: #8c94ff; // bleu ENSTA éclairci, comme les notebooks marimo en mode sombre
+  }
+
+  .quarto-title h1.title { border-bottom: 3px solid rgb(58, 70, 245); padding-bottom: 0.2em; }
+  .table > thead > tr > th { border-bottom: 2px solid rgb(58, 70, 245); }
+  .sidebar-item .sidebar-link.active, .sidebar-item .sidebar-link.active .menu-text { color: #8c94ff !important; font-weight: 700; }
+
+  .mark-orange {
+    // color: #ffb700;
+    background-color: #ffb700;
+    // padding: 0.2em 0.2em;
+    border-radius: 4px;
+  }
+
+
+  body {
+    font-weight: 380; 
+    font-size: medium;
+    text-align: justify;
+  }
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+  
+  .callout .callout-header {
+  
+    /* color: #eb1717; */
+    font-family: bitter;
+    font-size: 0.4rem;
+    font-weight: 650;
+    color: rgba(0, 67, 109, 0.9);
+    /* body-bg: #7f401cff; */
+    /* background-color: rgb(62, 194, 18); */
+  
+  }
+  
+  .callout.callout-style-simple { 
+    padding: 0em 1.8em;
+    border-left: solid #eb1717 0rem;
+    border-right: solid 0px silver;
+    border-top: solid 0px rgb(209, 6, 6);
+    border-bottom: solid 0px silver;
+    /* display: flex; */
+  }
+  
+  .callout.callout-style-simple .callout-body {
+    font-size: 0.8rem;
+    font-weight: 350;
+    /* body-bg: #7f401cff; */
+    background-color: rgba(0, 67, 109, 0.03);
+  }
+
+
+
+  .button {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem 0.5rem;
+      border-radius: 10px; // Makes the button rounded
+      background-color: rgb(58, 70, 245); // Primary color
+      color: white;
+      text-decoration: none;
+      // font-size: 1rem;
+      // font-weight: 500;
+      transition: background-color 0.3s, box-shadow 0.3s;
+  
+      &:hover {
+        background-color: rgb(172, 62, 247); // Darker shade on hover
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Adds a shadow
+        font-size: 0.97rem;
+      }
+  
+      &:active {
+        background-color: rgb(58, 70, 245); // Even darker for active state
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); // Inset shadow
+        font-size: 0.97rem;
+      }
+  
+      span.button-text {
+        margin-left: 0.5rem; // Spacing between icon and text
+      }
+    }
+  }
+  
+  
+  // scss for about page
+  
+  
+  div.quarto-about-trestles {
+    background-color: var(--bs-body-bg) !important;
+    margin-top: 60vh; /* This ensures the white background starts at the middle of the page */
+  
+    margin-left: 40 !important;
+    margin-right: 40 !important;
+    // width: 100vw;
+    // max-width: 100vw;
+    padding: 15vw; 
+  
+  }
+
+
+
+  .talk-card {
+    border: 1px solid rgba(58, 70, 245, 0.8);
+    padding: 0 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(58, 70, 245, 0.1);
+    background-color: rgba(58, 70, 245, 0.03);
+  }
+
+// Pas de justification dans la barre latérale (sinon « TP à compléter » est étiré)
+#quarto-sidebar, .sidebar-item { text-align: left; }
+
+// Tuiles des pages d'accueil (index.qmd, labs.qmd)
+.tuiles { display: grid; gap: 1.2rem; margin: 1.5rem 0; grid-template-columns: 1fr; }
+@media (min-width: 768px) { .tuiles-2 { grid-template-columns: 1fr 1fr; } }
+.tuile {
+  display: flex; flex-direction: column; text-align: left;
+  padding: 1.2rem 1.4rem; border-radius: 10px;
+  background: #221a4d; border: 1px solid #3a3370; border-left: 6px solid rgb(58, 70, 245);
+  color: inherit;
+  h3 { margin: 0.2rem 0 0.4rem; color: #8c94ff; }
+  p { margin: 0 0 0.8rem; color: #b9b6d3; }
+}
+a.tuile-lien { text-decoration: none !important; transition: box-shadow .2s, transform .2s; }
+a.tuile-lien:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4); transform: translateY(-2px); }
+.tuile-icone { font-size: 2rem; line-height: 1; }
+.tuile-etiquette { font-size: 0.8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #8c94ff; }
+.tuile-boutons { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: auto; }
+.tuile-boutons a.bouton {
+  padding: 0.35rem 0.9rem; border-radius: 8px; background: rgb(58, 70, 245); color: #fff; text-decoration: none; font-weight: 600;
+  &:hover { background: rgb(41, 43, 151); }
+}
+.tuile-boutons a.bouton-secondaire { background: transparent; border: 1px solid #8c94ff; color: #8c94ff; }
+.tuile-a-venir { opacity: 0.5; border-left-color: #3a3370; }
+.video-cours h4 { margin-top: 0; }

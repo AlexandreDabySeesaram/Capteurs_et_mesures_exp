@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 1 : suivi d&#x27;objet dans une vidéo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Couleurs ENSTA, identiques à celles du site Quarto (assets/style_site*.scss) */
+  :root {
+    --ensta-marine: #170f39; --ensta-bleu: #3a46f5; --ensta-bleu-fonce: #292b97; --ensta-corail: #f5463a;
+    --fond: #ffffff; --texte: #212529; --doux: #5b5b6b; --carte: #f6f7ff; --bord: #d9dcf7;
+    --titre: var(--ensta-marine); --accent: var(--ensta-bleu);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --fond: #170f39; --texte: #f3f3f3; --doux: #b9b6d3; --carte: #221a4d; --bord: #3a3370;
+            --titre: #8c94ff; --accent: #8c94ff; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fond); color: var(--texte); font: 16px/1.6 "Lato", system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { background: var(--ensta-marine) url("../../../../assets/Images/Backgroundcode.png") center / cover; color: #fff; }
+  header .barre { max-width: 760px; margin: 0 auto; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+  header a { color: #fff; text-decoration: none; font-weight: 700; }
+  header a:hover { text-decoration: underline; }
+  main { max-width: 760px; margin: 0 auto; padding: 36px 16px 64px; }
+  h1 { font-size: 1.9rem; margin: 0 0 4px; color: var(--titre); }
+  .sous-titre { color: var(--doux); margin: 0 0 28px; }
+  .cartes { display: grid; gap: 14px; margin-bottom: 36px; }
+  .carte { display: block; padding: 18px 20px; background: var(--carte); border: 1px solid var(--bord); border-left: 5px solid var(--ensta-bleu);
+           border-radius: 8px; color: inherit; text-decoration: none; transition: box-shadow .2s, transform .2s; }
+  .carte:hover { box-shadow: 0 4px 12px rgba(23, 15, 57, .18); transform: translateY(-1px); }
+  .carte h2 { margin: 0 0 4px; font-size: 1.15rem; color: var(--accent); }
+  .carte p { margin: 0; color: var(--doux); }
+  h3 { margin: 30px 0 8px; font-size: 1.15rem; color: var(--titre); }
+  a { color: var(--accent); }
+  ol, ul { padding-left: 22px; }
+  li { margin: 4px 0; }
+  kbd { font: 0.85em ui-monospace, monospace; border: 1px solid var(--bord); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: var(--carte); }
+  code { font: 0.9em ui-monospace, monospace; }
+  .note { border-left: 4px solid var(--ensta-bleu); padding: 8px 14px; background: var(--carte); border-radius: 0 8px 8px 0; }
+</style>
+</head>
+<body>
+<header><div class="barre"><a href="../../../../index.html">← Méthodes expérimentales</a></div></header>
+<main>
+  <h1>Lab 1 : suivi d&#x27;objet dans une vidéo</h1>
+  <p class="sous-titre">Méthodes expérimentales, travaux pratiques à compléter</p>
+
+  <div class="cartes">
+<a class="carte" href="tracking_numpy/"><h2>TP 1 : suivi d&#x27;un point avec NumPy</h2><p>Vidéo synthétique, barycentre, résolution sub-pixel, FFT et repliement de spectre.</p></a>
+<a class="carte" href="tracking_opencv/"><h2>TP 2 : suivi d&#x27;un pendule avec OpenCV</h2><p>Vidéo réelle, corrélation de motif, fréquence d&#x27;oscillation et incertitudes.</p></a>
+  </div>
+
+  <h3>Démarrer</h3>
+  <ol>
+    <li>Ouvrez un TP ci-dessus, de préférence dans <strong>Chrome, Firefox ou Edge</strong> sur ordinateur.
+      Python tourne directement dans votre navigateur : il n'y a <strong>rien à installer</strong>.</li>
+    <li>Le premier chargement prend <strong>30 s à 1 min</strong> (téléchargement de Python, NumPy, OpenCV...). Les suivants sont plus rapides.</li>
+    <li>Complétez les cellules marquées <strong>TODO</strong>. Exécutez une cellule avec <kbd>Ctrl</kbd>+<kbd>Entrée</kbd>
+      (<kbd>Cmd</kbd>+<kbd>Entrée</kbd> sur Mac). Les cellules qui en dépendent se mettent à jour automatiquement.
+      Les encadrés verts ✅ vous indiquent quand une fonction est correcte.</li>
+  </ol>
+
+  <h3>Enregistrer votre travail</h3>
+  <ul>
+    <li>Enregistrez régulièrement avec <kbd>Ctrl</kbd>+<kbd>S</kbd> (<kbd>Cmd</kbd>+<kbd>S</kbd> sur Mac).
+      Votre code est alors conservé <strong>dans ce navigateur, sur cet ordinateur</strong> : en rouvrant la même page plus tard, vous retrouvez votre travail.</li>
+    <li>Cette sauvegarde est effacée si vous videz les données du navigateur ou utilisez une fenêtre de navigation privée,
+      et elle ne vous suit pas sur un autre ordinateur. <strong>Téléchargez donc aussi votre notebook</strong> (voir ci-dessous) à la fin de chaque séance.</li>
+    <li>Pour repartir de l'énoncé d'origine, ajoutez <code>?reinitialiser</code> à la fin de l'adresse de la page
+      (par exemple <code>…/nom_du_tp/?reinitialiser</code>). Attention, votre sauvegarde est alors effacée.</li>
+  </ul>
+
+  <h3>Rendre votre notebook</h3>
+  <ol>
+    <li>Enregistrez (<kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>S</kbd>).</li>
+    <li>Ouvrez le menu <strong>☰</strong> en haut à droite du notebook, puis <strong>Export…</strong> → <strong>Python</strong> →
+      <strong>Notebook source</strong> → <strong>Export notebook source</strong>. Un fichier <code>.py</code> est téléchargé.</li>
+    <li>Renommez-le <code>NOM_Prenom_TP1.py</code> (avec le numéro du TP) et déposez-le à l'endroit indiqué par votre enseignant.</li>
+  </ol>
+  <p class="note">Vous pouvez aussi exporter en <strong>HTML</strong> (même menu) pour garder une copie lisible avec les graphiques.
+    Le fichier <code>.py</code> rendu peut être rouvert avec marimo installé localement (<code>marimo edit NOM_Prenom_TP1.py</code>).</p>
+</main>
+</body>
+</html>

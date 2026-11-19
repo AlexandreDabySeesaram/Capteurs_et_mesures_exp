@@ -1,0 +1,7 @@
+---
+title: "Lab N : titre du lab"
+---
+
+Présentation du lab : objectifs, matériel, déroulé.
+
+* **TP à compléter dans le navigateur** (rien à installer) : [ouvrir](marimo/site/index.html)

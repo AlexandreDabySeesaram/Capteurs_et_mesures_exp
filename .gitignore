@@ -3,3 +3,5 @@ public/*
 
 
 /.quarto/
+
+**/*.quarto_ipynb

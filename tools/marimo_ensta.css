@@ -1,0 +1,32 @@
+/* Couleurs ENSTA pour les notebooks marimo exportés (injecté par build_marimo.py).
+   Mêmes couleurs que le site Quarto (assets/style_site*.scss) et la page d'accueil des labs. */
+:root {
+  --ensta-marine: #170f39;
+  --ensta-bleu: #3a46f5;
+  --ensta-bleu-clair: #8c94ff;
+  --ensta-teinte: #f3f4ff;
+}
+
+/* Bandeau fin aux couleurs de l'école */
+body { border-top: 5px solid var(--ensta-marine); }
+
+/* Titres et liens du texte (cellules markdown) */
+.markdown h1, .markdown h2, .markdown h3, .markdown h4 { color: var(--ensta-marine); }
+.markdown h1 { border-bottom: 3px solid var(--ensta-bleu); padding-bottom: 0.2em; }
+.markdown a { color: var(--ensta-bleu); }
+.markdown strong { color: inherit; }
+
+/* Encadrés « /// admonition » */
+.markdown .admonition {
+  border-left: 4px solid var(--ensta-bleu) !important;
+  background: var(--ensta-teinte);
+  border-radius: 0 8px 8px 0;
+}
+.markdown .admonition .admonition-title { color: var(--ensta-marine); }
+
+/* Mode sombre de marimo */
+body.dark { border-top-color: var(--ensta-bleu); }
+body.dark .markdown h1, body.dark .markdown h2, body.dark .markdown h3, body.dark .markdown h4,
+body.dark .markdown .admonition .admonition-title { color: var(--ensta-bleu-clair); }
+body.dark .markdown a { color: var(--ensta-bleu-clair); }
+body.dark .markdown .admonition { background: rgba(58, 70, 245, 0.12); }
