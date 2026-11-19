@@ -219,12 +219,11 @@ def _(cv2):
 
 
 @app.cell(hide_code=True)
-def _(bbox, first_frame, localiser, mo):
-    # Vérification automatique du TODO 2 : dans la première image, le motif doit être retrouvé à sa place exacte.
+def _(first_frame, localiser, mo):
+    # Vérification automatique du TODO 2 : un motif découpé dans la première image (rectangle fixe autour
+    # du disque, indépendant de la zone choisie plus bas) doit être retrouvé exactement à sa place.
     def _verifier():
-        if bbox is None:
-            return mo.callout(mo.md("Complétez d'abord le **TODO 1**."), kind="warn")
-        _x1, _y1, _bw, _bh = bbox
+        _x1, _y1, _bw, _bh = 657, 383, 100, 100
         _motif = first_frame[_y1 : _y1 + _bh, _x1 : _x1 + _bw]
         try:
             _x, _y, _s = localiser(first_frame, _motif)
