@@ -13,7 +13,7 @@ labs/
   _modele/               squelette à copier pour créer un nouveau lab
   lab01_tracking/        Lab 1 : pendule de Huygens par analyse d'images
     index.qmd            page du lab
-    *.ipynb, *.py        notebooks de démonstration d'origine
+    *.ipynb, *.py        PoC initiale
     Resources/           vidéo du pendule, bibliographie
     marimo/              notebooks marimo à compléter (maîtres, versions étudiant, corrigés, site WASM)
 ```

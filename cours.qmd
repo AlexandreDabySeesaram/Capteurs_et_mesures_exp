@@ -5,7 +5,6 @@ toc: false
 
 Les vidéos des séances de cours. Cliquez sur une vidéo pour la lancer, ou sur son titre pour l'ouvrir sur YouTube.
 
-<!-- Pour changer une vidéo : remplacer l'adresse dans le shortcode {{< video ... >}} et dans le lien du titre. -->
 
 :::: {.grid}
 
