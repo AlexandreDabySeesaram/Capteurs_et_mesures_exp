@@ -104,7 +104,7 @@
     "href": "cours.html",
     "title": "Cours",
     "section": "",
-    "text": "Les vidéos des séances de cours. Cliquez sur une vidéo pour la lancer, ou sur son titre pour l’ouvrir sur YouTube.\n\n\n\nSéance 1\n\n\n\nSéance 2\n\n\n\nSéance 3\n\n\n\nSéance 4",
+    "text": "Les vidéos des séances de cours. Cliquez sur une vidéo pour la lancer, ou sur son titre pour l’ouvrir sur YouTube.\n\n\nSéance 1\n\n\n\nSéance 2\n\n\n\nSéance 3\n\n\n\nSéance 4",
     "crumbs": [
       "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
       "Cours"
