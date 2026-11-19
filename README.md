@@ -42,7 +42,7 @@ x = calcul_correct()        # <- la solution, retirée de la version étudiant
 | `notebooks/` | version étudiant (TODO), générée | non |
 | `solutions/` | corrigé, généré | non |
 | `site/` | version étudiant compilée en WASM, générée | **oui** |
-| `site_solutions/` | corrigés en WASM | **oui, sans lien** (adresse à garder pour vous : `…/labs/<lab>/marimo/site_solutions/`) |
+| `site_solutions/` | corrigés en WASM | **oui, sans lien** (`…/labs/<lab>/marimo/site_solutions/`) |
 
 Ne jamais modifier les dossiers générés à la main : ils sont écrasés à chaque build.
 
