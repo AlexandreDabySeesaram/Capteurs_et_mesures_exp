@@ -41,6 +41,7 @@ from pathlib import Path
 
 RACINE = Path(__file__).resolve().parent.parent
 MODELE_ACCUEIL = Path(__file__).resolve().parent / "accueil_modele.html"
+NOINDEX = '<meta name="robots" content="noindex, nofollow">\n'  # corrigés : non référencés par les moteurs de recherche
 STYLE_ENSTA = (Path(__file__).resolve().parent / "marimo_ensta.css").read_text(encoding="utf-8")
 
 EN_TETE_MAITRE = re.compile(r"^# FICHIER MAÎTRE.*?\n(?:#.*\n)*?(?=\n|import)", re.M)
@@ -154,6 +155,8 @@ class Lab:
             # Couleurs ENSTA (titres, liens, encadrés)
             assert texte.count("</head>") == 1
             texte = texte.replace("</head>", f"<style>\n{STYLE_ENSTA}</style>\n</head>")
+            if site_dir == "site_solutions":
+                texte = texte.replace("</head>", NOINDEX + "</head>", 1)
             page.write_text(texte, encoding="utf-8")
             (site / nom / "CLAUDE.md").unlink(missing_ok=True)  # fichier d'aide IA ajouté par marimo, inutile ici
             cartes.append(
@@ -166,6 +169,9 @@ class Lab:
         accueil = accueil.replace("<!--CARTES-->", "\n".join(cartes))
         # Lien de retour vers l'accueil du site Quarto (chemin relatif depuis ce site)
         accueil = accueil.replace("<!--RACINE-->", os.path.relpath(RACINE, site).replace(os.sep, "/"))
+        if site_dir == "site_solutions":
+            accueil = accueil.replace("</head>", NOINDEX + "</head>", 1)
+            accueil = accueil.replace("<h1>", "<h1>Corrigés · ", 1)
         (site / "index.html").write_text(accueil, encoding="utf-8")
         (site / ".nojekyll").touch()
         if final.exists():

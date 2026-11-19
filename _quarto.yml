@@ -2,7 +2,7 @@ execute:
   freeze: true
 project:
   # Recompile les notebooks marimo des labs qui ont changé (rien si aucun changement, voir tools/build_marimo.py)
-  pre-render: python3 tools/build_marimo.py --site
+  pre-render: python3 tools/build_marimo.py --site --site-solutions
   # Pages rendues : l'accueil et, pour chaque lab, ses .qmd / .ipynb (labs/_modele est ignoré car préfixé par _)
   render:
     - "index.qmd"
@@ -16,6 +16,8 @@ project:
     - "labs/*/Resources/**"
     # Sites marimo WASM des TP à compléter (générés par python tools/build_marimo.py --site)
     - "labs/*/marimo/site/**"
+    # Corrigés : publiés mais non liés depuis le site (adresse connue des seuls enseignants, pages en noindex)
+    - "labs/*/marimo/site_solutions/**"
   type: website
   output-dir: public
 website:
