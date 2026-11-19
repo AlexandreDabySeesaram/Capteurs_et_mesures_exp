@@ -46,7 +46,7 @@ x = calcul_correct()        # <- la solution, retirée de la version étudiant
 
 Ne jamais modifier les dossiers générés à la main : ils sont écrasés à chaque build.
 
-**Trois façons de compiler** (prérequis local : `pip install marimo==0.25.2`) :
+**Trois façons de compiler** (prérequis local : `pip install marimo==0.25.2 uv`) :
 
 1. **Notebooks seuls, en local** : `python3 tools/build_marimo.py --site` (ajouter `--force` pour tout recompiler).
 2. **Tout le site, en local** : `quarto preview` (ou `quarto render`) ; les notebooks modifiés sont recompilés automatiquement.
