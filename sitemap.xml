@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://AlexandreDabySeesaram.github.io/Tracking_video/jup_tracking.html</loc>
-    <lastmod>2025-10-11T17:53:11.086Z</lastmod>
+    <loc>https://AlexandreDabySeesaram.github.io/Tracking_video/labs/lab01_tracking/jup_tracking.html</loc>
+    <lastmod>2025-10-11T17:53:11.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://AlexandreDabySeesaram.github.io/Tracking_video/labs.html</loc>
+    <lastmod>2026-11-19T10:43:14.051Z</lastmod>
   </url>
   <url>
     <loc>https://AlexandreDabySeesaram.github.io/Tracking_video/index.html</loc>
-    <lastmod>2025-10-11T17:55:55.968Z</lastmod>
+    <lastmod>2026-11-19T10:43:14.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://AlexandreDabySeesaram.github.io/Tracking_video/cours.html</loc>
+    <lastmod>2026-11-19T10:43:14.050Z</lastmod>
+  </url>
+  <url>
+    <loc>https://AlexandreDabySeesaram.github.io/Tracking_video/labs/lab01_tracking/index.html</loc>
+    <lastmod>2026-11-19T10:43:14.053Z</lastmod>
   </url>
 </urlset>
