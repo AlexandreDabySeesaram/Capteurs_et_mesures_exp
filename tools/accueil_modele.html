@@ -6,6 +6,10 @@
 <title><!--TITRE--></title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<script>
+  /* Même réglage que le site Quarto : localStorage "quarto-color-scheme" = "alternate" (sombre) ou "default" (clair) */
+  try { if (localStorage.getItem("quarto-color-scheme") === "alternate") document.documentElement.dataset.theme = "dark"; } catch (e) {}
+</script>
 <style>
   /* Couleurs ENSTA, identiques à celles du site Quarto (assets/style_site*.scss) */
   :root {
@@ -13,16 +17,18 @@
     --fond: #ffffff; --texte: #212529; --doux: #5b5b6b; --carte: #f6f7ff; --bord: #d9dcf7;
     --titre: var(--ensta-marine); --accent: var(--ensta-bleu);
   }
-  @media (prefers-color-scheme: dark) {
-    :root { --fond: #170f39; --texte: #f3f3f3; --doux: #b9b6d3; --carte: #221a4d; --bord: #3a3370;
+  /* Mode sombre seulement sur demande (bouton), comme le site Quarto ; le choix est partagé avec lui */
+  :root[data-theme="dark"] { --fond: #170f39; --texte: #f3f3f3; --doux: #b9b6d3; --carte: #221a4d; --bord: #3a3370;
             --titre: #8c94ff; --accent: #8c94ff; }
-  }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--fond); color: var(--texte); font: 16px/1.6 "Lato", system-ui, -apple-system, "Segoe UI", sans-serif; }
   header { background: var(--ensta-marine) url("<!--RACINE-->/assets/Images/Backgroundcode.png") center / cover; color: #fff; }
   header .barre { max-width: 760px; margin: 0 auto; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
   header a { color: #fff; text-decoration: none; font-weight: 700; }
   header a:hover { text-decoration: underline; }
+  header .barre { justify-content: space-between; }
+  #bascule-theme { background: none; border: 0; color: #fff; cursor: pointer; padding: 4px; line-height: 0; opacity: .9; }
+  #bascule-theme:hover { opacity: 1; }
   main { max-width: 760px; margin: 0 auto; padding: 36px 16px 64px; }
   h1 { font-size: 1.9rem; margin: 0 0 4px; color: var(--titre); }
   .sous-titre { color: var(--doux); margin: 0 0 28px; }
@@ -42,7 +48,18 @@
 </style>
 </head>
 <body>
-<header><div class="barre"><a href="<!--RACINE-->/index.html">← Méthodes expérimentales</a></div></header>
+<header><div class="barre"><a href="<!--RACINE-->/index.html">← Méthodes expérimentales</a>
+  <button id="bascule-theme" type="button" title="Mode clair / sombre" aria-label="Basculer le mode clair / sombre">
+    <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/></svg>
+  </button>
+</div></header>
+<script>
+  document.getElementById("bascule-theme").addEventListener("click", function () {
+    var sombre = document.documentElement.dataset.theme !== "dark";
+    if (sombre) document.documentElement.dataset.theme = "dark"; else delete document.documentElement.dataset.theme;
+    try { localStorage.setItem("quarto-color-scheme", sombre ? "alternate" : "default"); } catch (e) {}
+  });
+</script>
 <main>
   <h1><!--TITRE--></h1>
   <p class="sous-titre"><!--SOUS_TITRE--></p>

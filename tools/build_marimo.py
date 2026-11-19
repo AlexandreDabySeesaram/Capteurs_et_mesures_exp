@@ -5,6 +5,10 @@ Usage (depuis la racine du dépôt) :
     python tools/build_marimo.py --site              # idem + site étudiant (marimo/site/)
     python tools/build_marimo.py --site --site-solutions   # + site des corrigés (marimo/site_solutions/)
     python tools/build_marimo.py labs/lab01_tracking --site # un seul lab
+    python tools/build_marimo.py --site --force      # recompiler même si rien n'a changé
+
+Un lab n'est recompilé que si ses maîtres, lab.json, public/ ou les fichiers de tools/ ont changé
+(empreinte enregistrée dans site/.empreinte) : on peut donc lancer ce script avant chaque rendu Quarto.
 
 Organisation d'un lab (voir labs/_modele/) :
     labs/labXX_nom/marimo/
@@ -117,7 +121,9 @@ class Lab:
         print(f"[{self.config['titre']}] notebooks/ et solutions/ générés")
 
     def exporter_site(self, source_dir: str, site_dir: str):
-        source, site = self.marimo / source_dir, self.marimo / site_dir
+        source, final = self.marimo / source_dir, self.marimo / site_dir
+        # On construit dans un dossier temporaire : si l'export échoue, l'ancien site reste intact.
+        site = self.marimo / f".{site_dir}_en_cours"
         if site.exists():
             shutil.rmtree(site)
         site.mkdir()
@@ -128,7 +134,7 @@ class Lab:
         for nb in self.notebooks:
             nom = nb["nom"]
             subprocess.run(
-                ["marimo", "export", "html-wasm", str(source / f"{nom}.py"),
+                [*commande_marimo(), "export", "html-wasm", str(source / f"{nom}.py"),
                  "-o", str(site / nom), "--mode", "edit", "-f"],
                 check=True, env=env,
             )
@@ -162,7 +168,22 @@ class Lab:
         accueil = accueil.replace("<!--RACINE-->", os.path.relpath(RACINE, site).replace(os.sep, "/"))
         (site / "index.html").write_text(accueil, encoding="utf-8")
         (site / ".nojekyll").touch()
+        if final.exists():
+            shutil.rmtree(final)
+        site.rename(final)
+        site = final
         print(f"[{self.config['titre']}] site exporté dans {os.path.relpath(site, RACINE)}")
+
+
+def commande_marimo():
+    """marimo du Python courant si possible, sinon la commande `marimo` du PATH
+    (Quarto peut lancer le pre-render avec un autre Python que celui de votre environnement)."""
+    import importlib.util
+    if importlib.util.find_spec("marimo"):
+        return [sys.executable, "-m", "marimo"]
+    if shutil.which("marimo"):
+        return [shutil.which("marimo")]
+    sys.exit("marimo introuvable : installez-le (pip install marimo==0.25.2) dans l'environnement actif.")
 
 
 def labs_demandes(args):
@@ -172,10 +193,40 @@ def labs_demandes(args):
     return [Lab(p) for p in chemins if not p.name.startswith("_")]
 
 
+def empreinte(lab: "Lab") -> str:
+    """Empreinte de tout ce dont dépend le site d'un lab : si elle ne change pas, inutile de recompiler."""
+    import hashlib
+
+    h = hashlib.sha256()
+    outils = Path(__file__).resolve().parent
+    fichiers = [lab.marimo / "lab.json", Path(__file__).resolve(),
+                outils / "accueil_modele.html", outils / "marimo_ensta.css"]
+    fichiers += sorted((lab.marimo / "maitres").glob("*.py"))
+    fichiers += sorted(f for f in (lab.marimo / "public").rglob("*") if f.is_file())
+    for f in fichiers:
+        h.update(str(f.relative_to(RACINE)).encode())
+        h.update(f.read_bytes())
+    # Version de marimo réellement utilisée pour l'export
+    h.update(subprocess.run([*commande_marimo(), "--version"], capture_output=True, text=True).stdout.strip().encode())
+    return h.hexdigest()
+
+
 if __name__ == "__main__":
+    # --force : tout recompiler même si rien n'a changé
+    force = "--force" in sys.argv
     for lab in labs_demandes(sys.argv[1:]):
+        cibles = [("--site", "notebooks", "site"), ("--site-solutions", "solutions", "site_solutions")]
+        cibles = [(src, dst) for opt, src, dst in cibles if opt in sys.argv]
+        signature = empreinte(lab)
+        a_faire = [
+            (src, dst) for src, dst in cibles
+            if force or not (lab.marimo / dst / ".empreinte").exists()
+            or (lab.marimo / dst / ".empreinte").read_text() != signature
+        ]
+        if cibles and not a_faire:
+            print(f"[{lab.config['titre']}] inchangé, rien à recompiler")
+            continue
         lab.generer()
-        if "--site" in sys.argv:
-            lab.exporter_site("notebooks", "site")
-        if "--site-solutions" in sys.argv:
-            lab.exporter_site("solutions", "site_solutions")
+        for src, dst in a_faire:
+            lab.exporter_site(src, dst)
+            (lab.marimo / dst / ".empreinte").write_text(signature)

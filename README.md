@@ -46,17 +46,11 @@ x = calcul_correct()        # <- la solution, retirée de la version étudiant
 
 Ne jamais modifier les dossiers générés à la main : ils sont écrasés à chaque build.
 
-**Au quotidien :**
+**Trois façons de compiler** (prérequis local : `pip install marimo==0.25.2`) :
 
-* Modifier seulement des pages `.qmd` : `quarto publish gh-pages`, c'est tout.
-* Modifier un notebook maître, `lab.json` ou `public/` :
-  ```bash
-  python tools/build_marimo.py --site   # une fois : pip install marimo
-  quarto publish gh-pages
-  ```
-
-<!-- Pour ne plus avoir à lancer le build à la main, on peut ajouter `pre-render: python tools/build_marimo.py --site` -->
-<!-- sous `project:` dans `_quarto.yml` (marimo doit alors être installé dans le `python` utilisé par Quarto, et chaque rendu prend 20 à 40 s de plus). -->
+1. **Notebooks seuls, en local** : `python3 tools/build_marimo.py --site` (ajouter `--force` pour tout recompiler).
+2. **Tout le site, en local** : `quarto preview` (ou `quarto render`) ; les notebooks modifiés sont recompilés automatiquement.
+3. **En ligne** : commit + push sur `main`, GitHub compile et publie tout.
 
 ## Lab 1 : run the tracking notebooks locally
 
