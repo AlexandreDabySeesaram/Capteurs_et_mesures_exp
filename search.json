@@ -91,9 +91,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Méthodes expérimentales",
+    "title": "Capteurs & Méthodes expérimentales",
     "section": "",
-    "text": "Bienvenue sur le site du cours de méthodes expérimentales : vidéos de cours et travaux pratiques. Les notebooks des labs s’exécutent directement dans le navigateur, sans rien installer.\n\n  \n    🎬\n    Cours\n    Les vidéos des séances de cours.\n  \n  \n    🧪\n    Labs\n    Les travaux pratiques : sujets et notebooks à compléter dans le navigateur.",
+    "text": "Bienvenue sur le site du cours de méthodes expérimentales : vidéos de cours et travaux pratiques. Les notebooks des labs s’exécutent directement dans le navigateur, sans rien installer.\n\n\n\nCours\nLes vidéos des séances de cours.\n\n\n\nLabs\nLes travaux pratiques : sujets et notebooks à compléter dans le navigateur.",
     "crumbs": [
       "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
       "Accueil"
