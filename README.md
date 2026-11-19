@@ -18,7 +18,7 @@ labs/
     marimo/              notebooks marimo à compléter (maîtres, versions étudiant, corrigés, site WASM)
 ```
 
-Voir `tools/LISEZMOI_marimo.md` et `labs/_modele/LISEZMOI.md`.
+Voir `tools/README_marimo.md` et `labs/_modele/README.md`.
 
 ## Lab 1 : run the tracking notebooks locally
 

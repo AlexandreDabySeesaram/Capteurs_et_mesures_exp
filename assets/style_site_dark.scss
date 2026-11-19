@@ -145,9 +145,11 @@ h1, h2, h3, h4 {
   h3 { margin: 0.2rem 0 0.4rem; color: #8c94ff; }
   p { margin: 0 0 0.8rem; color: #b9b6d3; }
 }
-a.tuile-lien { text-decoration: none !important; transition: box-shadow .2s, transform .2s; }
-a.tuile-lien:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4); transform: translateY(-2px); }
-.tuile-icone { font-size: 2rem; line-height: 1; }
+.tuile-lien { transition: box-shadow .2s, transform .2s; }
+.tuile-lien:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4); transform: translateY(-2px); }
+.tuile-icone { font-size: 1.8rem; line-height: 1; color: #8c94ff; }
+.tuile-titre { display: block; font-size: 1.4rem; font-weight: 700; margin: 0.5rem 0 0.3rem; }
+.tuile-titre a { color: #8c94ff; font-weight: 700; text-decoration: none !important; }
 .tuile-etiquette { font-size: 0.8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #8c94ff; }
 .tuile-boutons { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: auto; }
 .tuile-boutons a.bouton {

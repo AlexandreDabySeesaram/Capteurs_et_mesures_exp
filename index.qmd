@@ -1,22 +1,27 @@
 ---
-title: "Méthodes expérimentales"
+title: "Capteurs & Méthodes expérimentales"
 toc: false
 ---
 
 Bienvenue sur le site du cours de méthodes expérimentales : vidéos de cours et travaux pratiques.
 Les notebooks des labs s'exécutent directement dans le navigateur, sans rien installer.
 
-```{=html}
-<div class="tuiles tuiles-2">
-  <a class="tuile tuile-lien" href="cours.html">
-    <div class="tuile-icone">🎬</div>
-    <h3>Cours</h3>
-    <p>Les vidéos des séances de cours.</p>
-  </a>
-  <a class="tuile tuile-lien" href="labs.html">
-    <div class="tuile-icone">🧪</div>
-    <h3>Labs</h3>
-    <p>Les travaux pratiques : sujets et notebooks à compléter dans le navigateur.</p>
-  </a>
-</div>
-```
+:::: {.tuiles .tuiles-2}
+
+::: {.tuile .tuile-lien .position-relative}
+[{{< iconify fa6-solid:chalkboard-user >}}]{.tuile-icone}
+
+[[Cours](cours.qmd){.stretched-link}]{.tuile-titre}
+
+Les vidéos des séances de cours.
+:::
+
+::: {.tuile .tuile-lien .position-relative}
+[{{< iconify fa6-solid:flask >}}]{.tuile-icone}
+
+[[Labs](labs.qmd){.stretched-link}]{.tuile-titre}
+
+Les travaux pratiques : sujets et notebooks à compléter dans le navigateur.
+:::
+
+::::
