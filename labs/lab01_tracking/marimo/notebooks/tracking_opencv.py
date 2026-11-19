@@ -104,28 +104,37 @@ async def _(cv2, io, mo, np, zipfile):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ## Sélection de la région d'intérêt (ROI)
+    ## Principe du suivi : la corrélation de motif (*template matching*)
 
-    Pour choisir l'objet à suivre, déplacez les curseurs ci-dessous pour centrer le **rectangle rouge**
-    sur le disque jaune du pendule. Le rectangle doit contenir tout le disque, sans trop de fond autour.
+    Le notebook d'origine utilise le *tracker* **CSRT** d'OpenCV (Lukežič *et al.*,
+    [*Discriminative Correlation Filter with Channel and Spatial Reliability*](https://openaccess.thecvf.com/content_cvpr_2017/html/Lukezic_Discriminative_Correlation_Filter_CVPR_2017_paper.html), CVPR 2017).
+    Ce *tracker* n'est malheureusement pas disponible dans la version d'OpenCV qui tourne dans le navigateur.
+    Nous utilisons donc une méthode plus simple, qui repose sur la même idée de **corrélation** :
 
-    Dans OpenCV, un rectangle (*bounding box*) est décrit par le quadruplet `(x, y, w, h)` où `(x, y)` sont
-    les coordonnées du **coin supérieur gauche** (l'axe $y$ est orienté **vers le bas**) et `(w, h)` la largeur et la hauteur.
+    1. on découpe dans la première image le **motif** $T$ (le contenu du rectangle choisi) ;
+    2. pour chaque nouvelle image $I$, on fait glisser le motif sur toute l'image et on calcule en chaque
+       position $(x, y)$ un **coefficient de corrélation normalisé** $R(x, y)$ (formule ci-dessous) ;
+    3. la position du motif dans la nouvelle image est celle où $R$ est **maximal** ($R = 1$ pour une correspondance parfaite).
+
+    $$R(x,y) = \frac{\sum_{x',y'} T'(x',y')\, I'(x+x', y+y')}{\sqrt{\sum_{x',y'} T'(x',y')^2 \sum_{x',y'} I'(x+x',y+y')^2}}$$
+
+    où $T'$ et $I'$ sont le motif et la portion d'image auxquels on a retranché leur moyenne.
+
+    OpenCV fournit ce calcul avec `cv2.matchTemplate(image, motif, cv2.TM_CCOEFF_NORMED)`,
+    qui renvoie la carte $R$, et `cv2.minMaxLoc(R)`, qui renvoie `(min_val, max_val, min_loc, max_loc)`.
+    Les positions `min_loc` et `max_loc` sont des couples `(x, y)`.
     """)
     return
 
 
-@app.cell
-def _(frame_h, frame_w, mo):
-    # Curseurs interactifs pour choisir le rectangle (valeurs par défaut au centre de l'image)
-    bbox_x = mo.ui.slider(0, frame_w, value=frame_w // 2, label="Centre X du rectangle", show_value=True)
-    bbox_y = mo.ui.slider(0, frame_h, value=frame_h // 2, label="Centre Y du rectangle", show_value=True)
-    bbox_w = mo.ui.slider(10, frame_w // 2, value=min(60, frame_w // 2), label="Largeur", show_value=True)
-    bbox_h = mo.ui.slider(10, frame_h // 2, value=min(60, frame_h // 2), label="Hauteur", show_value=True)
-    run_button = mo.ui.run_button(label="Lancer le suivi")
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Les briques du suivi
 
-    roi_controls = mo.hstack([bbox_x, bbox_y, bbox_w, bbox_h], justify="space-between", wrap=True)
-    return bbox_h, bbox_w, bbox_x, bbox_y, roi_controls, run_button
+    Avant de lancer le suivi, complétez les trois fonctions dont il a besoin.
+    """)
+    return
 
 
 @app.cell(hide_code=True)
@@ -133,7 +142,7 @@ def _(mo):
     mo.md(r"""
     ### TODO 1 : du centre au coin supérieur gauche
 
-    Les curseurs donnent le **centre** $(c_x, c_y)$, la largeur $w$ et la hauteur $h$ du rectangle.
+    Les curseurs de sélection (plus bas) donnent le **centre** $(c_x, c_y)$, la largeur $w$ et la hauteur $h$ du rectangle.
     Calculez les coordonnées `(x1, y1)` du **coin supérieur gauche** (en pixels entiers, et jamais négatives),
     puis le rectangle au format OpenCV `bbox = (x1, y1, w, h)`.
     """)
@@ -169,56 +178,6 @@ def _(bbox_h, bbox_w, bbox_x, bbox_y):
 
     bbox = None if (x1 is None or y1 is None) else (int(x1), int(y1), _bw, _bh)
     return (bbox,)
-
-
-@app.cell
-def _(bbox, cv2, first_frame, mo, roi_controls, run_button):
-    if bbox is None:
-        _img_output = mo.callout(mo.md("Complétez le **TODO 1** pour afficher le rectangle."), kind="warn")
-    else:
-        # On dessine sur une copie de la première image
-        _draw_frame = first_frame.copy()
-        _x1, _y1, _bw, _bh = bbox
-        cv2.rectangle(_draw_frame, (_x1, _y1), (_x1 + _bw, _y1 + _bh), (0, 0, 255), 2)
-        # Conversion BGR -> RGB pour l'affichage
-        _img_output = mo.image(cv2.cvtColor(_draw_frame, cv2.COLOR_BGR2RGB), width=450)
-
-    mo.vstack(
-        [
-            mo.md("Ajustez la zone à suivre :"),
-            roi_controls,
-            mo.md(f"Rectangle courant `(x, y, w, h)` = `{bbox}`"),
-            run_button,
-            _img_output,
-        ]
-    )
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    ## Principe du suivi : la corrélation de motif (*template matching*)
-
-    Le notebook d'origine utilise le *tracker* **CSRT** d'OpenCV (Lukežič *et al.*,
-    [*Discriminative Correlation Filter with Channel and Spatial Reliability*](https://openaccess.thecvf.com/content_cvpr_2017/html/Lukezic_Discriminative_Correlation_Filter_CVPR_2017_paper.html), CVPR 2017).
-    Ce *tracker* n'est malheureusement pas disponible dans la version d'OpenCV qui tourne dans le navigateur.
-    Nous utilisons donc une méthode plus simple, qui repose sur la même idée de **corrélation** :
-
-    1. on découpe dans la première image le **motif** $T$ (le contenu du rectangle choisi) ;
-    2. pour chaque nouvelle image $I$, on fait glisser le motif sur toute l'image et on calcule en chaque
-       position $(x, y)$ un **coefficient de corrélation normalisé** $R(x, y)$ (formule ci-dessous) ;
-    3. la position du motif dans la nouvelle image est celle où $R$ est **maximal** ($R = 1$ pour une correspondance parfaite).
-
-    $$R(x,y) = \frac{\sum_{x',y'} T'(x',y')\, I'(x+x', y+y')}{\sqrt{\sum_{x',y'} T'(x',y')^2 \sum_{x',y'} I'(x+x',y+y')^2}}$$
-
-    où $T'$ et $I'$ sont le motif et la portion d'image auxquels on a retranché leur moyenne.
-
-    OpenCV fournit ce calcul avec `cv2.matchTemplate(image, motif, cv2.TM_CCOEFF_NORMED)`,
-    qui renvoie la carte $R$, et `cv2.minMaxLoc(R)`, qui renvoie `(min_val, max_val, min_loc, max_loc)`.
-    Les positions `min_loc` et `max_loc` sont des couples `(x, y)`.
-    """)
-    return
 
 
 @app.cell(hide_code=True)
@@ -287,30 +246,107 @@ def _(bbox, first_frame, localiser, mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ## Suivi image par image
-
-    On parcourt maintenant toutes les images : pour chacune, on localise le motif et on enregistre la position
-    du **centre** du rectangle. On obtient une liste `positions` dont chaque élément est `[numéro d'image, x_centre, y_centre]`.
-
     ### TODO 3 : position du centre
 
-    Dans la boucle ci-dessous, à partir du coin supérieur gauche `(x, y)` renvoyé par `localiser` et de la taille
-    `(w, h)` du motif, calculez les coordonnées `center_x`, `center_y` du centre du rectangle (en pixels entiers).
-
-    Cliquez ensuite sur **« Lancer le suivi »** (plus haut) pour démarrer.
+    Complétez la fonction `centre(x, y, w, h)` qui renvoie les coordonnées `(center_x, center_y)` du **centre**
+    d'un rectangle de coin supérieur gauche `(x, y)`, de largeur `w` et de hauteur `h` (en pixels entiers).
+    Elle sert, pendant le suivi, à enregistrer la position du pendule à chaque image.
     """)
     return
 
 
 @app.cell
-def _(bbox, cv2, frames, localiser, mo, run_button):
+def _():
+    def centre(x, y, w, h):
+        """Renvoie (center_x, center_y), centre du rectangle (x, y, w, h), en pixels entiers."""
+        # TODO 3 : coordonnées du centre du rectangle
+        center_x, center_y = None, None
+        return center_x, center_y
+
+    return (centre,)
+
+
+@app.cell(hide_code=True)
+def _(centre, mo):
+    # Vérification automatique du TODO 3
+    def _verifier():
+        try:
+            _c = centre(10, 20, 30, 40)
+        except Exception as _e:
+            return mo.callout(mo.md(f"❌ `centre` a levé une erreur : `{_e!r}`"), kind="danger")
+        if _c == (None, None):
+            return mo.callout(mo.md("**TODO 3** pas encore complété."), kind="warn")
+        if tuple(_c) == (25, 40):
+            return mo.callout(mo.md("✅ `centre` est correct."), kind="success")
+        return mo.callout(mo.md(f"❌ Pour (10, 20, 30, 40), attendu `(25, 40)`, obtenu `{_c}`."), kind="danger")
+
+    _verifier()
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Sélection de la zone et suivi
+
+    Déplacez les curseurs pour centrer le **rectangle rouge** sur le disque jaune du pendule :
+    le rectangle doit contenir tout le disque, sans trop de fond autour.
+    Dans OpenCV, un rectangle (*bounding box*) est décrit par `(x, y, w, h)` où `(x, y)` est le **coin supérieur gauche**
+    (l'axe $y$ est orienté **vers le bas**) et `(w, h)` la largeur et la hauteur.
+
+    Cliquez ensuite sur **« Lancer le suivi »** : la vidéo du suivi s'affiche juste en dessous.
+    On obtient une liste `positions` dont chaque élément est `[numéro d'image, x_centre, y_centre]`.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(frame_h, frame_w, mo):
+    # Curseurs interactifs pour choisir le rectangle (valeurs par défaut au centre de l'image)
+    bbox_x = mo.ui.slider(0, frame_w, value=frame_w // 2, label="Centre X du rectangle", show_value=True)
+    bbox_y = mo.ui.slider(0, frame_h, value=frame_h // 2, label="Centre Y du rectangle", show_value=True)
+    bbox_w = mo.ui.slider(10, frame_w // 2, value=min(60, frame_w // 2), label="Largeur", show_value=True)
+    bbox_h = mo.ui.slider(10, frame_h // 2, value=min(60, frame_h // 2), label="Hauteur", show_value=True)
+    run_button = mo.ui.run_button(label="Lancer le suivi")
+
+    roi_controls = mo.hstack([bbox_x, bbox_y, bbox_w, bbox_h], justify="space-between", wrap=True)
+    return bbox_h, bbox_w, bbox_x, bbox_y, roi_controls, run_button
+
+
+@app.cell(hide_code=True)
+def _(bbox, cv2, first_frame, mo, roi_controls, run_button):
+    if bbox is None:
+        _img_output = mo.callout(mo.md("Complétez le **TODO 1** pour afficher le rectangle."), kind="warn")
+    else:
+        # On dessine sur une copie de la première image
+        _draw_frame = first_frame.copy()
+        _x1, _y1, _bw, _bh = bbox
+        cv2.rectangle(_draw_frame, (_x1, _y1), (_x1 + _bw, _y1 + _bh), (0, 0, 255), 2)
+        # Conversion BGR -> RGB pour l'affichage
+        _img_output = mo.image(cv2.cvtColor(_draw_frame, cv2.COLOR_BGR2RGB), width=320)  # aperçu réduit : la vidéo du suivi reste visible juste en dessous
+
+    mo.vstack(
+        [
+            mo.md("Ajustez la zone à suivre :"),
+            roi_controls,
+            mo.md(f"Rectangle courant `(x, y, w, h)` = `{bbox}`"),
+            _img_output,
+            run_button,
+        ]
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(bbox, centre, cv2, frames, localiser, mo, run_button):
     positions = []
     if bbox is None:
         mo.output.replace(mo.callout(mo.md("Complétez d'abord le **TODO 1**."), kind="warn"))
     elif not run_button.value:
         mo.output.replace(
-            mo.md(
-                "Placez le rectangle rouge sur le disque du pendule, puis cliquez sur **« Lancer le suivi »**."
+            mo.callout(
+                mo.md("Placez le rectangle rouge sur le disque du pendule, puis cliquez sur **« Lancer le suivi »** : la vidéo s'affichera ici."),
+                kind="info",
             )
         )
     else:
@@ -324,9 +360,7 @@ def _(bbox, cv2, frames, localiser, mo, run_button):
                 positions = []
                 break
 
-            # TODO 3 : coordonnées du centre du rectangle
-            center_x = None
-            center_y = None
+            center_x, center_y = centre(x, y, w, h)
             if center_x is None or center_y is None:
                 mo.output.replace(mo.callout(mo.md("Complétez le **TODO 3**."), kind="warn"))
                 positions = []
