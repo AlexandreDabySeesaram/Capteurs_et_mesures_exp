@@ -28,8 +28,8 @@ website:
         href: https://github.com/AlexandreDabySeesaram/Tracking_video
       - text: "{{< iconify fa6-solid:download width=17 title=download >}}"
         href: https://github.com/AlexandreDabySeesaram/Tracking_video/archive/refs/heads/master.zip
-      - href: https://alexandredabyseesaram.github.io/
-        text: Alexandre Daby-Seesaram's homepage
+      # - href: https://alexandredabyseesaram.github.io/
+      #   text: Alexandre Daby-Seesaram's homepage
 
   sidebar:
     style: "floating"
