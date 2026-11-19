@@ -8,7 +8,7 @@
     "crumbs": [
       "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
       "Labs",
-      "Lab 1 : suivi vidéo",
+      "Lab 1 : pendule de Huygens",
       "Notebook de démonstration"
     ]
   },
@@ -21,7 +21,7 @@
     "crumbs": [
       "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
       "Labs",
-      "Lab 1 : suivi vidéo",
+      "Lab 1 : pendule de Huygens",
       "Notebook de démonstration"
     ]
   },
@@ -34,7 +34,7 @@
     "crumbs": [
       "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
       "Labs",
-      "Lab 1 : suivi vidéo",
+      "Lab 1 : pendule de Huygens",
       "Notebook de démonstration"
     ]
   },
@@ -47,7 +47,7 @@
     "crumbs": [
       "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
       "Labs",
-      "Lab 1 : suivi vidéo",
+      "Lab 1 : pendule de Huygens",
       "Notebook de démonstration"
     ]
   },
@@ -60,7 +60,7 @@
     "crumbs": [
       "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
       "Labs",
-      "Lab 1 : suivi vidéo",
+      "Lab 1 : pendule de Huygens",
       "Notebook de démonstration"
     ]
   },
@@ -73,7 +73,7 @@
     "crumbs": [
       "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
       "Labs",
-      "Lab 1 : suivi vidéo",
+      "Lab 1 : pendule de Huygens",
       "Notebook de démonstration"
     ]
   },
@@ -82,7 +82,7 @@
     "href": "labs.html",
     "title": "Labs",
     "section": "",
-    "text": "Chaque lab comporte un sujet et des notebooks à compléter directement dans le navigateur (rien à installer).\n\n\n  \n    Lab 1\n    Suivi d'objet dans une vidéo\n    Suivre un point puis un pendule image par image (NumPy, OpenCV), mesurer sa fréquence d'oscillation et discuter les incertitudes.\n    \n      Sujet du lab\n      Notebooks à compléter\n    \n  \n  \n    Lab 2\n    À venir\n    Sujet bientôt disponible.\n  \n  \n    Lab 3\n    À venir\n    Sujet bientôt disponible.\n  \n  \n    Lab 4\n    À venir\n    Sujet bientôt disponible.",
+    "text": "Chaque lab comporte un sujet et des notebooks à compléter directement dans le navigateur (rien à installer).\n\n\n\n Lab 1 · Mécanique des systèmes discrets\nDynamique du pendule de Huygens par analyse d’images\nSuivre un point puis un pendule image par image (NumPy, OpenCV), mesurer sa fréquence d’oscillation et discuter les incertitudes.\nSujet du lab Notebooks à compléter\n\n\n Lab 2 · Mécanique des solides\nEssais de traction & corrélation d’images\nÀ venir\n\n\n Lab 3 · Mécanique des fluides\nSillage d’un cylindre & mesures dynamiques avec fil chaud\nÀ venir\n\n\n Lab 4 · Dynamique, vibrations, acoustique\nMesures de fonctions de transfert & analyse modale\nÀ venir",
     "crumbs": [
       "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
       "Labs"
@@ -113,65 +113,65 @@
   {
     "objectID": "labs/lab01_tracking/index.html",
     "href": "labs/lab01_tracking/index.html",
-    "title": "Lab 1 : suivi d’objet dans une vidéo",
+    "title": "Lab 1 : dynamique du pendule de Huygens par analyse d’images",
     "section": "",
     "text": "Mesurer un mouvement à partir d’une vidéo, et estimer la qualité de cette mesure. À la fin du lab, vous saurez :\n\nrepérer un objet dans une image numérique et suivre sa position image par image ;\npasser d’une trajectoire en pixels à une fréquence d’oscillation (transformée de Fourier, ajustement par moindres carrés) ;\nidentifier les sources d’incertitude d’une mesure par vidéo : quantification spatiale, échantillonnage temporel (critère de Nyquist), étalonnage, parallaxe, bruit du capteur.",
     "crumbs": [
       "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
       "Labs",
-      "Lab 1 : suivi vidéo",
+      "Lab 1 : pendule de Huygens",
       "Sujet"
     ]
   },
   {
     "objectID": "labs/lab01_tracking/index.html#objectifs",
     "href": "labs/lab01_tracking/index.html#objectifs",
-    "title": "Lab 1 : suivi d’objet dans une vidéo",
+    "title": "Lab 1 : dynamique du pendule de Huygens par analyse d’images",
     "section": "",
     "text": "Mesurer un mouvement à partir d’une vidéo, et estimer la qualité de cette mesure. À la fin du lab, vous saurez :\n\nrepérer un objet dans une image numérique et suivre sa position image par image ;\npasser d’une trajectoire en pixels à une fréquence d’oscillation (transformée de Fourier, ajustement par moindres carrés) ;\nidentifier les sources d’incertitude d’une mesure par vidéo : quantification spatiale, échantillonnage temporel (critère de Nyquist), étalonnage, parallaxe, bruit du capteur.",
     "crumbs": [
       "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
       "Labs",
-      "Lab 1 : suivi vidéo",
+      "Lab 1 : pendule de Huygens",
       "Sujet"
     ]
   },
   {
     "objectID": "labs/lab01_tracking/index.html#déroulé",
     "href": "labs/lab01_tracking/index.html#déroulé",
-    "title": "Lab 1 : suivi d’objet dans une vidéo",
+    "title": "Lab 1 : dynamique du pendule de Huygens par analyse d’images",
     "section": "Déroulé",
     "text": "Déroulé\nLe lab se fait dans deux notebooks à compléter, qui s’exécutent directement dans le navigateur : ouvrir les notebooks.\nTP 1 : suivi d’un point avec NumPy. On génère une vidéo synthétique d’un point qui oscille, on le suit en calculant le barycentre des pixels sombres, puis on analyse la trajectoire. On étudie la résolution sub-pixel, l’effet du nombre d’images et le repliement de spectre.\nTP 2 : suivi d’un pendule avec OpenCV. On suit le disque d’un pendule réel filmé à 60 images/s par corrélation de motif (template matching), on en déduit sa fréquence d’oscillation et on discute les erreurs systématiques et aléatoires.\nDans chaque notebook, les cellules marquées TODO sont à compléter ; des indices et des vérifications automatiques vous guident.",
     "crumbs": [
       "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
       "Labs",
-      "Lab 1 : suivi vidéo",
+      "Lab 1 : pendule de Huygens",
       "Sujet"
     ]
   },
   {
     "objectID": "labs/lab01_tracking/index.html#rendu",
     "href": "labs/lab01_tracking/index.html#rendu",
-    "title": "Lab 1 : suivi d’objet dans une vidéo",
+    "title": "Lab 1 : dynamique du pendule de Huygens par analyse d’images",
     "section": "Rendu",
     "text": "Rendu\nEnregistrez votre travail avec Ctrl/Cmd + S, puis téléchargez chaque notebook (menu ☰ → Export… → Python → Export notebook source). Renommez les fichiers NOM_Prenom_TP1.py et NOM_Prenom_TP2.py et déposez-les à l’endroit indiqué par votre enseignant.",
     "crumbs": [
       "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
       "Labs",
-      "Lab 1 : suivi vidéo",
+      "Lab 1 : pendule de Huygens",
       "Sujet"
     ]
   },
   {
     "objectID": "labs/lab01_tracking/index.html#pour-aller-plus-loin-démonstration-avec-le-tracker-csrt",
     "href": "labs/lab01_tracking/index.html#pour-aller-plus-loin-démonstration-avec-le-tracker-csrt",
-    "title": "Lab 1 : suivi d’objet dans une vidéo",
+    "title": "Lab 1 : dynamique du pendule de Huygens par analyse d’images",
     "section": "Pour aller plus loin : démonstration avec le tracker CSRT",
     "text": "Pour aller plus loin : démonstration avec le tracker CSRT\nLe notebook de démonstration utilise le tracker CSRT d’OpenCV et une sélection interactive de la zone à suivre. Il s’exécute en ligne avec Binder  ou sur votre ordinateur, dans un environnement Conda contenant OpenCV, Matplotlib et NumPy :\n# Créer un environnement Conda avec Python 3.13\nconda create -n tracking-env python=3.13 -y\n\n# Activer l'environnement\nconda activate tracking-env\n\n# Installer OpenCV (avec les modules contrib), NumPy et Matplotlib\nconda install -c conda-forge opencv=4.8.0 matplotlib numpy -y",
     "crumbs": [
       "{{< iconify fa6-solid:rocket width=17 title=Binder >}}",
       "Labs",
-      "Lab 1 : suivi vidéo",
+      "Lab 1 : pendule de Huygens",
       "Sujet"
     ]
   }
