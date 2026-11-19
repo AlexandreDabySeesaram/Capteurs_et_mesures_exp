@@ -5,33 +5,42 @@ toc: false
 
 Chaque lab comporte un sujet et des notebooks à compléter directement dans le navigateur (rien à installer).
 
-<!-- Pour un nouveau lab : remplacer la tuile « À venir » correspondante par une tuile sur le modèle du Lab 1. -->
+<!-- Pour ouvrir un lab : retirer la classe .tuile-a-venir de sa tuile, remplacer « À venir » par les boutons (modèle : Lab 1). -->
 
-```{=html}
-<div class="tuiles tuiles-2">
-  <div class="tuile">
-    <div class="tuile-etiquette">Lab 1</div>
-    <h3>Suivi d'objet dans une vidéo</h3>
-    <p>Suivre un point puis un pendule image par image (NumPy, OpenCV), mesurer sa fréquence d'oscillation et discuter les incertitudes.</p>
-    <div class="tuile-boutons">
-      <a class="bouton" href="labs/lab01_tracking/index.html">Sujet du lab</a>
-      <a class="bouton bouton-secondaire" href="labs/lab01_tracking/marimo/site/index.html">Notebooks à compléter</a>
-    </div>
-  </div>
-  <div class="tuile tuile-a-venir">
-    <div class="tuile-etiquette">Lab 2</div>
-    <h3>À venir</h3>
-    <p>Sujet bientôt disponible.</p>
-  </div>
-  <div class="tuile tuile-a-venir">
-    <div class="tuile-etiquette">Lab 3</div>
-    <h3>À venir</h3>
-    <p>Sujet bientôt disponible.</p>
-  </div>
-  <div class="tuile tuile-a-venir">
-    <div class="tuile-etiquette">Lab 4</div>
-    <h3>À venir</h3>
-    <p>Sujet bientôt disponible.</p>
-  </div>
-</div>
-```
+:::: {.tuiles .tuiles-2}
+
+::: {.tuile}
+[{{< iconify fa6-solid:clock-rotate-left >}} Lab 1 · Mécanique des systèmes discrets]{.tuile-etiquette}
+
+[Dynamique du pendule de Huygens par analyse d'images]{.tuile-titre}
+
+Suivre un point puis un pendule image par image (NumPy, OpenCV), mesurer sa fréquence d'oscillation et discuter les incertitudes.
+
+[[Sujet du lab](labs/lab01_tracking/index.qmd){.bouton} [Notebooks à compléter](labs/lab01_tracking/marimo/site/index.html){.bouton .bouton-secondaire}]{.tuile-boutons}
+:::
+
+::: {.tuile .tuile-a-venir}
+[{{< iconify fa6-solid:ruler-combined >}} Lab 2 · Mécanique des solides]{.tuile-etiquette}
+
+[Essais de traction & corrélation d'images]{.tuile-titre}
+
+[À venir]{.tuile-statut}
+:::
+
+::: {.tuile .tuile-a-venir}
+[{{< iconify fa6-solid:wind >}} Lab 3 · Mécanique des fluides]{.tuile-etiquette}
+
+[Sillage d'un cylindre & mesures dynamiques avec fil chaud]{.tuile-titre}
+
+[À venir]{.tuile-statut}
+:::
+
+::: {.tuile .tuile-a-venir}
+[{{< iconify fa6-solid:wave-square >}} Lab 4 · Dynamique, vibrations, acoustique]{.tuile-etiquette}
+
+[Mesures de fonctions de transfert & analyse modale]{.tuile-titre}
+
+[À venir]{.tuile-statut}
+:::
+
+::::

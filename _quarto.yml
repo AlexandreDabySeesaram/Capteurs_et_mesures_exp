@@ -43,7 +43,7 @@ website:
         href: labs.qmd
         contents:
           # Un bloc par lab (copier ce bloc pour le lab suivant)
-          - section: "Lab 1 : suivi vidéo"
+          - section: "Lab 1 : pendule de Huygens"
             contents:
               - text: "Sujet"
                 href: labs/lab01_tracking/index.qmd

@@ -168,7 +168,9 @@ div.quarto-about-trestles {
 .tuile-titre { display: block; font-size: 1.4rem; font-weight: 700; margin: 0.5rem 0 0.3rem; }
 .tuile-titre a { color: rgb(23, 15, 57); font-weight: 700; text-decoration: none !important; }
 .tuile-etiquette { font-size: 0.8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgb(58, 70, 245); }
-.tuile-boutons { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: auto; }
+.tuile-statut { font-style: italic; }
+.tuile .tuile-titre { font-size: 1.25rem; color: rgb(23, 15, 57); }
+.tuile-boutons { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem; margin-top: auto; }
 .tuile-boutons a.bouton {
   padding: 0.35rem 0.9rem; border-radius: 8px; background: rgb(23, 15, 57); color: #fff; text-decoration: none; font-weight: 600;
   &:hover { background: rgb(41, 43, 151); }

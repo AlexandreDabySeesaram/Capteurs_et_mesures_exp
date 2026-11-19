@@ -11,7 +11,7 @@ assets/                  styles et images du site
 tools/                   build_marimo.py (notebooks à compléter -> site WASM) et sa documentation
 labs/
   _modele/               squelette à copier pour créer un nouveau lab
-  lab01_tracking/        Lab 1 : suivi d'objet dans une vidéo
+  lab01_tracking/        Lab 1 : pendule de Huygens par analyse d'images
     index.qmd            page du lab
     *.ipynb, *.py        notebooks de démonstration d'origine
     Resources/           vidéo du pendule, bibliographie

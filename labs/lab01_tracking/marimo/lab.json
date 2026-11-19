@@ -1,6 +1,6 @@
 {
-  "titre": "Lab 1 : suivi d'objet dans une vidéo",
-  "sous_titre": "Méthodes expérimentales, travaux pratiques à compléter",
+  "titre": "Lab 1 : dynamique du pendule de Huygens par analyse d'images",
+  "sous_titre": "Mécanique des systèmes discrets · travaux pratiques à compléter",
   "notebooks": [
     {
       "nom": "tracking_numpy",

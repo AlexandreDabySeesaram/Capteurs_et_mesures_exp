@@ -1,5 +1,6 @@
 ---
-title: "Lab 1 : suivi d'objet dans une vidéo"
+title: "Lab 1 : dynamique du pendule de Huygens par analyse d'images"
+subtitle: "Lab de mécanique des systèmes discrets"
 toc: true
 ---
 
