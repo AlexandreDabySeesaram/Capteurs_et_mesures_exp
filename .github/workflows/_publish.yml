@@ -33,7 +33,6 @@ jobs:
           python-version: "3.12"
 
       - name: Install marimo
-        # uv est requis par « marimo export html-wasm » (déjà présent sur votre Mac, pas sur GitHub)
         run: pip install marimo==0.25.2 uv
 
       - name: Render and Publish
